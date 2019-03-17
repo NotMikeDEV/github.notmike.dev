@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/autoip.html">autoip</a></li>
+  <li><a href="../modules/bind.html">bind</a></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/network.html">network</a></li>
+  <li><a href="../modules/nginx.html">nginx</a></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><strong>rsync</strong></li>
+  <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><a href="../modules/tinc.html">tinc</a></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>rsync</code></h1>
+<p>Rsync Service.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#AddServer">AddServer (port)</a></td>
+	<td class="summary">Add a new RSync Server.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#rsyncserver:AddDir">rsyncserver:AddDir (rsyncdir)</a></td>
+	<td class="summary">Add Directory to RSync server.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#rsyncdir:AddUser">rsyncdir:AddUser (rsyncuser)</a></td>
+	<td class="summary">Add User to RSync directory.</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#rsyncserver">rsyncserver</a></td>
+	<td class="summary">RSync Server</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#rsyncdir">rsyncdir</a></td>
+	<td class="summary">RSync Server Directory.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#rsyncuser">rsyncuser</a></td>
+	<td class="summary">RSync User.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "AddServer"></a>
+    <strong>AddServer (port)</strong>
+    <a style="float:right;" href="../source/rsync.lua.html#26">line 26</a>
+    </dt>
+    <dd>
+    Add a new RSync Server.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">port</span>
+         integer
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        rsyncserver
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> rsyncserver = rsync:AddServer(<span class="number">9999</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "rsyncserver:AddDir"></a>
+    <strong>rsyncserver:AddDir (rsyncdir)</strong>
+    <a style="float:right;" href="../source/rsync.lua.html#34">line 34</a>
+    </dt>
+    <dd>
+    Add Directory to RSync server.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">rsyncdir</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> rsyncserver = rsync:AddServer(<span class="number">9999</span>)
+rsyncserver:AddDir{path=<span class="string">'/test'</span>, localpath=<span class="string">'/tmp/test'</span>}</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "rsyncdir:AddUser"></a>
+    <strong>rsyncdir:AddUser (rsyncuser)</strong>
+    <a style="float:right;" href="../source/rsync.lua.html#42">line 42</a>
+    </dt>
+    <dd>
+    Add User to RSync directory.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">rsyncuser</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> rsyncserver = rsync:AddServer(<span class="number">9999</span>)
+<span class="keyword">local</span> ServerDir = rsyncserver:AddDir{path=<span class="string">'/test'</span>, localpath=<span class="string">'/tmp/test'</span>}
+<span class="keyword">local</span> ServerDir:AddUser{username=<span class="string">'test'</span>, password=<span class="string">'test'</span>}</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "rsyncserver"></a>
+    <strong>rsyncserver</strong>
+    <a style="float:right;" href="../source/rsync.lua.html#12">line 12</a>
+    </dt>
+    <dd>
+    RSync Server
+
+    </ul>
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">port</span>
+         integer TCP Port server is configured to listen on.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rsyncdir"></a>
+    <strong>rsyncdir</strong>
+    <a style="float:right;" href="../source/rsync.lua.html#17">line 17</a>
+    </dt>
+    <dd>
+    RSync Server Directory.
+
+    </ul>
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">path</span>
+         string Name of directory. Do not include / in the name.
+        </li>
+        <li><span class="parameter">localpath</span>
+         string Local Path to map to.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rsyncuser"></a>
+    <strong>rsyncuser</strong>
+    <a style="float:right;" href="../source/rsync.lua.html#22">line 22</a>
+    </dt>
+    <dd>
+    RSync User.
+
+    </ul>
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">username</span>
+         string
+        </li>
+        <li><span class="parameter">password</span>
+         string
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-03-17 07:43:26 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

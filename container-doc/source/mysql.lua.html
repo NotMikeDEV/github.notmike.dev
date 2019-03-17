@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+
+<h2>Source</h2>
+<ul class="nowrap">
+  <li><a href="../source/autoip.lua.html">autoip.lua</a></li>
+  <li><a href="../source/bind.lua.html">bind.lua</a></li>
+  <li><a href="../source/caddy.lua.html">caddy.lua</a></li>
+  <li><strong>mysql.lua</strong></li>
+  <li><a href="../source/nat64.lua.html">nat64.lua</a></li>
+  <li><a href="../source/network.lua.html">network.lua</a></li>
+  <li><a href="../source/nginx.lua.html">nginx.lua</a></li>
+  <li><a href="../source/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../source/php.lua.html">php.lua</a></li>
+  <li><a href="../source/rsync.lua.html">rsync.lua</a></li>
+  <li><a href="../source/samba.lua.html">samba.lua</a></li>
+  <li><a href="../source/sshd.lua.html">sshd.lua</a></li>
+  <li><a href="../source/tinc.lua.html">tinc.lua</a></li>
+  <li><a href="../source/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../source/container.lua.html">container.lua</a></li>
+  <li><a href="../source/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../source/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../source/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../source/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../source/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../source/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../source/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../source/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/autoip.html">autoip</a></li>
+  <li><a href="../modules/bind.html">bind</a></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/network.html">network</a></li>
+  <li><a href="../modules/nginx.html">nginx</a></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/rsync.html">rsync</a></li>
+  <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><a href="../modules/tinc.html">tinc</a></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+    <h2>mysql.lua</h2>
+<pre>
+<span class="comment">---MySQL server.
+</span><span class="comment">--An auto-generated root password is stored in the mysql directory as .mysql-root.pwd.
+</span><span class="comment">--@module mysql
+</span>mysql={databases={}}
+
+<span class="comment">---Add a database to MySQL server.
+</span><span class="comment">--@param database string Datbase name
+</span><span class="comment">--@return databse
+</span><a id="10"></a><span class="comment">--@usage local Database = mysql:Database('testdb')
+</span><span class="keyword">function</span> mysql:Database(database)
+	<span class="keyword">if</span> <span class="global">type</span>(database) ~= <span class="string">"table"</span> <span class="keyword">then</span> database = {database=database} <span class="keyword">end</span>
+	<span class="keyword">if</span> <span class="keyword">not</span> database.database <span class="keyword">then</span> database.database = <span class="string">'default'</span> <span class="keyword">end</span>
+
+	<span class="comment">---Database User.
+</span>	<span class="comment">--@field username string Username.
+</span>	<span class="comment">--@field password string Password.
+</span>	<span class="comment">--@table dbuser
+</span><a id="19"></a>
+	<span class="comment">---Grant access to database.
+</span>	<span class="comment">--@param dbuser {user='username',password='password'}
+</span>	<span class="comment">--@usage local Database = mysql:Database('testdb')
+</span>	<a id="23"></a><span class="comment">--@see dbuser
+</span>	<span class="keyword">function</span> database:Grant(dbuser)
+		<span class="keyword">if</span> <span class="keyword">not</span> dbuser.user <span class="keyword">then</span> dbuser.user = <span class="string">"user"</span> <span class="keyword">end</span>
+		<span class="keyword">if</span> <span class="keyword">not</span> dbuser.password <span class="keyword">then</span> dbuser.password = <span class="string">"changeme"</span> <span class="keyword">end</span>
+		<span class="keyword">if</span> <span class="keyword">not</span> self.users <span class="keyword">then</span> self.users = {} <span class="keyword">end</span>
+		self.users[dbuser] = dbuser
+		<span class="keyword">return</span> dbuser
+	<span class="keyword">end</span>
+
+	mysql.databases[database]=database
+	<span class="keyword">return</span> database
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> mysql.passwordfile(file, length)
+	<span class="keyword">local</span> passwd_chars = {<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>,<span class="string">'E'</span>,<span class="string">'F'</span>,<span class="string">'G'</span>,<span class="string">'H'</span>,<span class="string">'I'</span>,<span class="string">'J'</span>,<span class="string">'K'</span>,<span class="string">'L'</span>,<span class="string">'M'</span>,<span class="string">'N'</span>,<span class="string">'O'</span>,<span class="string">'P'</span>,<span class="string">'Q'</span>,<span class="string">'R'</span>,<span class="string">'S'</span>,<span class="string">'T'</span>,<span class="string">'U'</span>,<span class="string">'V'</span>,<span class="string">'W'</span>,<span class="string">'X'</span>,<span class="string">'Y'</span>,<span class="string">'Z'</span>,<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>,<span class="string">'g'</span>,<span class="string">'h'</span>,<span class="string">'i'</span>,<span class="string">'j'</span>,<span class="string">'k'</span>,<span class="string">'l'</span>,<span class="string">'m'</span>,<span class="string">'n'</span>,<span class="string">'o'</span>,<span class="string">'p'</span>,<span class="string">'q'</span>,<span class="string">'r'</span>,<span class="string">'s'</span>,<span class="string">'t'</span>,<span class="string">'u'</span>,<span class="string">'v'</span>,<span class="string">'w'</span>,<span class="string">'x'</span>,<span class="string">'y'</span>,<span class="string">'z'</span>,<span class="string">'0'</span>,<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>,<span class="string">'5'</span>,<span class="string">'6'</span>,<span class="string">'7'</span>,<span class="string">'8'</span>,<span class="string">'9'</span>}
+	<span class="keyword">if</span> <span class="keyword">not</span> length <span class="keyword">then</span> length = <span class="number">32</span> <span class="keyword">end</span>
+
+	<span class="keyword">local</span> password = read_file(file)
+	<span class="keyword">if</span> <span class="keyword">not</span> password <span class="keyword">then</span>
+		password = <span class="string">''</span>
+		<span class="keyword">for</span> x = <span class="number">1</span>, length <span class="keyword">do</span>
+			password = password .. passwd_chars[<span class="global">math</span>.random(#passwd_chars)]
+		<span class="keyword">end</span>
+		write_file(file, password)
+	<span class="keyword">end</span>
+	<span class="keyword">return</span> password
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> install_container()
+	<span class="global">print</span>(<span class="string">"Installing MySQL."</span>)
+	exec(<span class="string">'echo "mysql-server mysql-server/root_password password '</span> .. mysql.passwordfile(<span class="string">'./var/lib/mysql/.mysql-root.pwd'</span>) .. <span class="string">'" | debconf-set-selections'</span>)
+	exec(<span class="string">'echo "mysql-server mysql-server/root_password_again password '</span> .. mysql.passwordfile(<span class="string">'./var/lib/mysql/.mysql-root.pwd'</span>) .. <span class="string">'" | debconf-set-selections'</span>)
+	install_package(<span class="string">"mysql-server"</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> apply_config()
+	<span class="keyword">local</span> mysql_password = mysql.passwordfile(<span class="string">'./var/lib/mysql/.mysql-root.pwd'</span>)
+	<span class="keyword">for</span> _, database <span class="keyword">in</span> <span class="global">pairs</span>(mysql.databases) <span class="keyword">do</span>
+		<span class="keyword">if</span> <span class="keyword">not</span> mysql.running <span class="keyword">then</span>
+			<span class="keyword">local</span> handle = <span class="global">io</span>.popen(<span class="string">'mysqld &gt;/dev/null 2&gt;&amp;1 &amp; echo $!'</span>)
+			mysql.running = handle:read(<span class="string">"*number"</span>)
+			handle:close()
+		<span class="keyword">end</span>
+		<span class="keyword">local</span> count=<span class="number">0</span>
+		<span class="keyword">while</span> count &lt; <span class="number">30</span> <span class="keyword">do</span>
+			<span class="keyword">if</span> exec(<span class="string">'mysql -uroot -p"'</span> .. mysql_password .. <span class="string">'" -e "USE mysql;" 1&gt;/dev/null 2&gt;&amp;1'</span>) <span class="keyword">then</span>
+				count = <span class="number">999</span>
+			<span class="keyword">else</span>
+				count = count + <span class="number">1</span>
+				exec(<span class="string">"sleep 0.5"</span>)
+			<span class="keyword">end</span>
+		<span class="keyword">end</span>
+
+		<span class="keyword">if</span> <span class="keyword">not</span> exists(<span class="string">'/var/lib/mysql/'</span> .. database.database .. <span class="string">'/db.opt'</span>) <span class="keyword">then</span>
+			<span class="keyword">if</span> exec(<span class="string">'mysql -uroot -p"'</span> .. mysql_password .. <span class="string">'" -e "CREATE DATABASE '</span> .. database.database .. <span class="string">';" 1&gt;/dev/null 2&gt;&amp;1'</span>) <span class="keyword">then</span>
+				<span class="global">print</span>(<span class="string">'Created MySQL Database "'</span> .. database.database .. <span class="string">'"'</span>)
+			<span class="keyword">else</span>
+				<span class="global">print</span>(<span class="string">'Failed to create database '</span> .. database.database)
+			<span class="keyword">end</span>
+		<span class="keyword">else</span>
+			<span class="global">print</span>(<span class="string">'Loaded database '</span> .. database.database)
+		<span class="keyword">end</span>
+
+		<span class="keyword">if</span> database.users <span class="keyword">then</span> <span class="keyword">for</span> _, user <span class="keyword">in</span> <span class="global">pairs</span>(database.users) <span class="keyword">do</span>
+			<span class="keyword">if</span> exec(<span class="string">'mysql -uroot -p"'</span> .. mysql_password .. <span class="string">'" -e "GRANT ALL PRIVILEGES ON '</span> .. database.database .. <span class="string">'.* to \''</span> .. user.user .. <span class="string">'\'@\'localhost\' IDENTIFIED BY \''</span> .. user.password .. <span class="string">'\';" 1&gt;/dev/null 2&gt;&amp;1'</span>) <span class="keyword">then</span>
+				<span class="global">print</span>(<span class="string">'Granted '</span> .. user.user .. <span class="string">' access to database '</span> .. database.database)
+			<span class="keyword">else</span>
+				<span class="global">print</span>(<span class="string">'Failed to grant '</span> .. user.user .. <span class="string">' access to database '</span> .. database.database)
+			<span class="keyword">end</span>
+		<span class="keyword">end</span> <span class="keyword">end</span>
+	<span class="keyword">end</span>
+
+	<span class="keyword">if</span> mysql.running <span class="keyword">then</span>
+		exec(<span class="string">"kill -s TERM "</span> .. mysql.running)
+		exec(<span class="string">"kill -s KILL "</span> .. mysql.running)
+		exec(<span class="string">"sleep 1"</span>)
+	<span class="keyword">end</span>
+	mysql.running = <span class="keyword">false</span>
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> run()
+	<span class="global">print</span>(<span class="string">"Starting MySQL."</span>)
+	exec(<span class="string">"mkdir -p /var/run/mysqld &amp;&amp; chmod 0777 /var/run/mysqld"</span>)
+	exec(<span class="string">"mysqld &amp;"</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+Mount{ path=<span class="string">'/var/lib/mysql/'</span>, <span class="global">type</span>=<span class="string">"map"</span>, source=<span class="string">"mysql"</span> }
+Mount{ path=<span class="string">'/var/run/'</span>, <span class="global">type</span>=<span class="string">"map"</span>, source=<span class="string">".run"</span> }</pre>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-03-17 07:43:26 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/autoip.html">autoip</a></li>
+  <li><strong>bind</strong></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/network.html">network</a></li>
+  <li><a href="../modules/nginx.html">nginx</a></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/rsync.html">rsync</a></li>
+  <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><a href="../modules/tinc.html">tinc</a></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>bind</code></h1>
+<p>BIND DNS server.</p>
+<p>
+
+
+<pre>
+<span class="global">require</span>(<span class="string">"module/bind"</span>)
+
+bind:NewZone{domain=<span class="string">'example.com'</span>, <span class="global">type</span>=<span class="string">'master'</span>, file=<span class="string">'/path/to/example.com.db'</span>}
+bind:NewZone{domain=<span class="string">'example.net'</span>, <span class="global">type</span>=<span class="string">'slave'</span>, masters={<span class="string">"10.0.0.2"</span>}}
+</pre>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#AllowQuery">AllowQuery (ip)</a></td>
+	<td class="summary">Allow IP to query server.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AllowRecursion">AllowRecursion (ip)</a></td>
+	<td class="summary">Allow IP to query server.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#RRL">RRL (qps)</a></td>
+	<td class="summary">Enable RRL.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#NewZone">NewZone (zone)</a></td>
+	<td class="summary">Add a new zone.</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#zone">zone</a></td>
+	<td class="summary">Zone file.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "AllowQuery"></a>
+    <strong>AllowQuery (ip)</strong>
+    <a style="float:right;" href="../source/bind.lua.html#11">line 11</a>
+    </dt>
+    <dd>
+    Allow IP to query server.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ip</span>
+         string
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AllowRecursion"></a>
+    <strong>AllowRecursion (ip)</strong>
+    <a style="float:right;" href="../source/bind.lua.html#18">line 18</a>
+    </dt>
+    <dd>
+    Allow IP to query server.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ip</span>
+         string
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "RRL"></a>
+    <strong>RRL (qps)</strong>
+    <a style="float:right;" href="../source/bind.lua.html#25">line 25</a>
+    </dt>
+    <dd>
+    Enable RRL.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">qps</span>
+         int
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "NewZone"></a>
+    <strong>NewZone (zone)</strong>
+    <a style="float:right;" href="../source/bind.lua.html#39">line 39</a>
+    </dt>
+    <dd>
+    Add a new zone.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">zone</span>
+         zone
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/bind.html#zone">zone</a>
+    </ul>
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "zone"></a>
+    <strong>zone</strong>
+    <a style="float:right;" href="../source/bind.lua.html#36">line 36</a>
+    </dt>
+    <dd>
+    Zone file.
+
+    </ul>
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">domain</span>
+         string The domain name.
+        </li>
+        <li><span class="parameter">type</span>
+         string 'master' or 'slave'.
+        </li>
+        <li><span class="parameter">file</span>
+         string Path to zone file.
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">masters</span>
+         table If type is 'slave' then a list of master servers. Example: {'172.16.0.53', 'fc00::53'}
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-03-17 07:43:26 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

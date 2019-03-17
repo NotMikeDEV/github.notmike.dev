@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/autoip.html">autoip</a></li>
+  <li><a href="../modules/bind.html">bind</a></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/network.html">network</a></li>
+  <li><a href="../modules/nginx.html">nginx</a></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/rsync.html">rsync</a></li>
+  <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><strong>tinc</strong></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>tinc</code></h1>
+<p>Tinc VPN Client.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#AddInterface">AddInterface (interface)</a></td>
+	<td class="summary">Add tinc VPN.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#interface:LocalAddress">interface:LocalAddress (address)</a></td>
+	<td class="summary">Add Local Address to host file.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#interface:AddIP">interface:AddIP (address)</a></td>
+	<td class="summary">Add IP Address to interface.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#interface:AddPrefix">interface:AddPrefix (prefix)</a></td>
+	<td class="summary">Advertise Prefix.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#interface:AddRoute">interface:AddRoute (prefix)</a></td>
+	<td class="summary">Route Prefix out of interface.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "AddInterface"></a>
+    <strong>AddInterface (interface)</strong>
+    <a style="float:right;" href="../source/tinc.lua.html#11">line 11</a>
+    </dt>
+    <dd>
+    Add tinc VPN.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">interface</span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        interface
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/network.html#interface">network:interface</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> Tinc = tinc:AddInterface{name=<span class="string">'net0'</span>, tincport=<span class="string">'888'</span>, tincmode=<span class="string">'router'</span>}
+Tinc:AddIP{ipv4=<span class="string">'10.0.0.1'</span>, ipv6=<span class="string">'fc00::1'</span>, nat=<span class="keyword">true</span>}</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "interface:LocalAddress"></a>
+    <strong>interface:LocalAddress (address)</strong>
+    <a style="float:right;" href="../source/tinc.lua.html#16">line 16</a>
+    </dt>
+    <dd>
+    Add Local Address to host file.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">address</span>
+         table {hostname='server.example.net', ipv4='10.0.0.1', ipv6='fd00::1'}
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/network.html#address">network:address</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "interface:AddIP"></a>
+    <strong>interface:AddIP (address)</strong>
+    <a style="float:right;" href="../source/tinc.lua.html#23">line 23</a>
+    </dt>
+    <dd>
+    Add IP Address to interface.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">address</span>
+         table {ipv4='10.0.0.1', ipv6='fd00::1', nat=false, proxyarp='eth0'}
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/network.html#address">network:address</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "interface:AddPrefix"></a>
+    <strong>interface:AddPrefix (prefix)</strong>
+    <a style="float:right;" href="../source/tinc.lua.html#30">line 30</a>
+    </dt>
+    <dd>
+    Advertise Prefix.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">prefix</span>
+         table {ipv4='10.0.0.0/8', ipv6='fd00::/16'}
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/network.html#prefix">network:prefix</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "interface:AddRoute"></a>
+    <strong>interface:AddRoute (prefix)</strong>
+    <a style="float:right;" href="../source/tinc.lua.html#37">line 37</a>
+    </dt>
+    <dd>
+    Route Prefix out of interface.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">prefix</span>
+         table {ipv4='10.0.0.0/8', ipv6='fd00::/16'}
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/network.html#prefix">network:prefix</a>
+    </ul>
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-03-17 07:43:26 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

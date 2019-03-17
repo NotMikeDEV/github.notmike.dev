@@ -1,0 +1,354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+
+<h2>Source</h2>
+<ul class="nowrap">
+  <li><a href="../source/autoip.lua.html">autoip.lua</a></li>
+  <li><a href="../source/bind.lua.html">bind.lua</a></li>
+  <li><a href="../source/caddy.lua.html">caddy.lua</a></li>
+  <li><a href="../source/mysql.lua.html">mysql.lua</a></li>
+  <li><a href="../source/nat64.lua.html">nat64.lua</a></li>
+  <li><strong>network.lua</strong></li>
+  <li><a href="../source/nginx.lua.html">nginx.lua</a></li>
+  <li><a href="../source/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../source/php.lua.html">php.lua</a></li>
+  <li><a href="../source/rsync.lua.html">rsync.lua</a></li>
+  <li><a href="../source/samba.lua.html">samba.lua</a></li>
+  <li><a href="../source/sshd.lua.html">sshd.lua</a></li>
+  <li><a href="../source/tinc.lua.html">tinc.lua</a></li>
+  <li><a href="../source/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../source/container.lua.html">container.lua</a></li>
+  <li><a href="../source/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../source/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../source/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../source/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../source/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../source/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../source/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../source/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/autoip.html">autoip</a></li>
+  <li><a href="../modules/bind.html">bind</a></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/network.html">network</a></li>
+  <li><a href="../modules/nginx.html">nginx</a></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/rsync.html">rsync</a></li>
+  <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><a href="../modules/tinc.html">tinc</a></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+    <h2>network.lua</h2>
+<pre>
+<span class="comment">---Container networking support.
+</span><span class="comment">--	require("module/network")
+</span><span class="comment">--
+</span><span class="comment">--	network:AddIP{ipv4='10.0.0.1', ipv6='fd00::1', nat=true}
+</span><span class="comment">--@module network
+</span>network = {}
+
+<span class="comment">---Contains an IP Address.
+</span><span class="comment">--@field ipv4 string IPv4 Address.
+</span><span class="comment">--@field ipv6 string IPv6 Address.
+</span><span class="comment">--@field[opt] nat boolean Enable NAT for these IP Addresses.
+</span><span class="comment">--@field[opt] proxyarp string ProxyARP/ProxyNDP on the specified interface on the host.
+</span><span class="comment">--@table address
+</span><a id="15"></a>
+<span class="comment">---Add IP Address to container.
+</span><span class="comment">--@see address
+</span><a id="18"></a><span class="comment">--@param address
+</span><span class="keyword">function</span> network:AddIP(address)
+	<span class="keyword">if</span> <span class="keyword">not</span> network.interfaces <span class="keyword">or</span> <span class="keyword">not</span> network.interfaces.uplink <span class="keyword">then</span> network:AddInterface{name=<span class="string">'uplink'</span>, <span class="global">type</span>=<span class="string">'ethernet'</span>, default_route=<span class="keyword">true</span>} <span class="keyword">end</span>
+	network.interfaces.uplink:AddIP(address)
+<span class="keyword">end</span>
+
+<span class="comment">---Contains an IP Prefix.
+</span><span class="comment">--@field ipv4 string IPv4 Prefix to route.
+</span><span class="comment">--@field ipv6 string IPv6 Prefix to route.
+</span><span class="comment">--@table prefix
+</span><a id="28"></a>
+<span class="comment">---Route Prefix to container.
+</span><span class="comment">--@see prefix
+</span><a id="31"></a><span class="comment">--@param prefix
+</span><span class="keyword">function</span> network:AddPrefix(prefix)
+	<span class="keyword">if</span> <span class="keyword">not</span> network.interfaces <span class="keyword">or</span> <span class="keyword">not</span> network.interfaces.uplink <span class="keyword">then</span> network:AddInterface{name=<span class="string">'uplink'</span>, <span class="global">type</span>=<span class="string">'ethernet'</span>, default_route=<span class="keyword">true</span>} <span class="keyword">end</span>
+	network.interfaces.uplink:AddPrefix(prefix)
+<span class="keyword">end</span>
+
+<span class="comment">---Specify Nameserver to use in container.
+</span><span class="comment">--Call multiple times to configure multiple servers.
+</span><a id="39"></a><span class="comment">--@param nameserver string Nameserver IP Address.
+</span><span class="keyword">function</span> network:AddNameserver(nameserver)
+	<span class="keyword">if</span> <span class="keyword">not</span> network.nameservers <span class="keyword">then</span> network.nameservers ={} <span class="keyword">end</span>
+	<span class="global">table</span>.insert(network.nameservers, nameserver)
+<span class="keyword">end</span>
+
+<span class="comment">---Contains a network interface.
+</span><span class="comment">--@field type string Type of interface - ethernet/tinc.
+</span><span class="comment">--@field name string Name of interface in guest.
+</span><span class="comment">--@field[opt] default_route boolean Configure default route in container.
+</span><span class="comment">--@field[opt] tincpath string For tinc networks, the path to the tinc directory on the host.
+</span><span class="comment">--@table interface
+</span><a id="51"></a>
+<span class="comment">---Add an interface to the container.
+</span><span class="comment">--@see interface
+</span><span class="comment">--@param interface
+</span><span class="comment">--@return interface
+</span><span class="comment">--@usage local NIC = network:AddInterface{type='ethernet', name='net0'}
+</span><span class="comment">--NIC:AddIP{ipv4='10.0.0.1', ipv6='fc00::1', nat=true}
+</span><a id="58"></a><span class="comment">--NIC:AddPrefix{ipv4='10.0.0.0/24', ipv6='fc00::/64'}
+</span><span class="keyword">function</span> network:AddInterface(interface)
+	<span class="keyword">if</span> <span class="keyword">not</span> network.interfaces <span class="keyword">then</span> network.interfaces = {} <span class="keyword">end</span>
+	<span class="comment">---Add IP Address to interface
+</span>	<a id="62"></a><span class="comment">--@param address table {ipv4='10.0.0.1', ipv6='fd00::1', nat=false, proxyarp='eth0'}
+</span>	<span class="keyword">function</span> interface:AddIP(address)
+		<span class="keyword">if</span> <span class="keyword">not</span> self.addresses <span class="keyword">then</span> self.addresses = {} <span class="keyword">end</span>
+		self.addresses[address] = address
+	<span class="keyword">end</span>
+	<span class="comment">---Route Prefix to interface
+</span>	<a id="68"></a><span class="comment">--@param prefix table {ipv4='10.0.0.0/8', ipv6='fd00::/16'}
+</span>	<span class="keyword">function</span> interface:AddPrefix(prefix)
+		<span class="keyword">if</span> <span class="keyword">not</span> self.prefixes <span class="keyword">then</span> self.prefixes = {} <span class="keyword">end</span>
+		self.prefixes[prefix] = prefix
+	<span class="keyword">end</span>
+	<span class="keyword">if</span> <span class="keyword">not</span> interface.<span class="global">type</span> <span class="keyword">then</span> interface.<span class="global">type</span> = <span class="string">'ethernet'</span> <span class="keyword">end</span>
+	<span class="keyword">if</span> <span class="keyword">not</span> interface.name <span class="keyword">then</span> interface.name = <span class="string">'i'</span> .. #network.interfaces <span class="keyword">end</span>
+	network.interfaces[interface.name] = interface
+	<span class="keyword">return</span> interface
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> init_network_needed()
+	<span class="keyword">if</span> network.interfaces <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span> <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> init_network_host(pid)
+	pid = <span class="global">math</span>.floor(pid)
+	debug_print(<span class="string">'init_network_host'</span>, pid)
+	<span class="keyword">if</span> <span class="keyword">not</span> network.interfaces <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">0</span> <span class="keyword">end</span>
+	write_file(<span class="string">'/proc/sys/net/ipv4/conf/all/forwarding'</span>, <span class="string">'1'</span>)
+	write_file(<span class="string">'/proc/sys/net/ipv6/conf/all/forwarding'</span>, <span class="string">'1'</span>)
+	<span class="keyword">local</span> interface_count = <span class="number">0</span>
+	<span class="keyword">for</span> name, interface <span class="keyword">in</span> <span class="global">pairs</span>(network.interfaces) <span class="keyword">do</span>
+		interface_count = interface_count + <span class="number">1</span>
+		<span class="keyword">local</span> NIC = <span class="string">"c"</span> .. <span class="global">string</span>.format(<span class="string">"%.0f"</span>, pid) .. <span class="string">'_'</span> .. interface_count
+		debug_print(<span class="string">'init_network_host'</span>, <span class="string">"Interface "</span> .. interface_count .. <span class="string">": "</span> .. NIC .. <span class="string">" &gt; "</span> .. interface.name .. <span class="string">" - "</span> .. interface.<span class="global">type</span>)
+		<span class="keyword">if</span> interface.<span class="global">type</span> == <span class="string">"ethernet"</span> <span class="keyword">then</span>
+			<span class="keyword">if</span> <span class="keyword">not</span> exec(<span class="string">"ip link add name "</span> .. NIC .. <span class="string">" type veth peer name "</span> .. interface.name) <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span>
+			<span class="keyword">if</span> <span class="keyword">not</span> exec(<span class="string">"ifconfig "</span> .. NIC .. <span class="string">" up"</span>) <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span>
+			<span class="keyword">if</span> <span class="keyword">not</span> exec(<span class="string">"ip neigh add proxy 100.64.0.0 dev "</span> .. NIC .. <span class="string">" || arp -i "</span> .. NIC .. <span class="string">" -Ds 100.64.0.0 "</span> .. NIC .. <span class="string">" netmask 255.255.255.255 pub || ip -4 addr add 100.64.0.0/32 dev "</span> .. NIC .. <span class="string">" || ip addr add 100.64.0.0/32 dev "</span> .. NIC) <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span>
+			<span class="keyword">if</span> <span class="keyword">not</span> exec(<span class="string">"ip -6 addr add fe80::1/128 dev "</span> .. NIC ..<span class="string">" || ip addr add fe80::1/128 dev "</span> .. NIC) <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span>
+			<span class="keyword">if</span> <span class="keyword">not</span> exec(<span class="string">"ip link set dev "</span> .. interface.name .. <span class="string">" netns "</span> .. <span class="global">string</span>.format(<span class="string">"%.0f"</span>, pid)) <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span>
+			<span class="keyword">local</span> int_v4=<span class="keyword">nil</span>
+			<span class="keyword">if</span> interface.addresses <span class="keyword">then</span> <span class="keyword">for</span> _, addr <span class="keyword">in</span> <span class="global">pairs</span>(interface.addresses) <span class="keyword">do</span>
+				<span class="keyword">if</span> addr.ipv4 <span class="keyword">then</span>
+					int_v4 = addr.ipv4
+					debug_print(<span class="string">'init_network_host'</span>, <span class="string">"add IPv4 address "</span> .. addr.ipv4)
+					<span class="keyword">if</span> <span class="keyword">not</span> exec(<span class="string">"ip -4 route replace "</span> .. addr.ipv4 .. <span class="string">"/32 dev "</span> .. NIC .. <span class="string">" || ip route replace "</span> .. addr.ipv4 .. <span class="string">"/32 dev "</span> .. NIC) <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span>
+					exec(<span class="string">"iptables -t nat -D POSTROUTING -m state --state NEW -s "</span> .. addr.ipv4 .. <span class="string">" -j MASQUERADE 2&gt;/dev/null"</span>)
+					<span class="keyword">if</span> (addr.nat) <span class="keyword">then</span> <span class="keyword">if</span> <span class="keyword">not</span> exec(<span class="string">"iptables -t nat -I POSTROUTING -m state --state NEW -s "</span> .. addr.ipv4 .. <span class="string">" -m state --state NEW -j MASQUERADE"</span>) <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span> <span class="keyword">end</span>
+					<span class="keyword">if</span> (addr.proxyarp) <span class="keyword">then</span> exec(<span class="string">"ip neigh add proxy "</span> .. addr.ipv4 .. <span class="string">" dev "</span> .. addr.proxyarp) <span class="keyword">end</span>
+				<span class="keyword">end</span>
+				<span class="keyword">if</span> addr.ipv6 <span class="keyword">then</span>
+					debug_print(<span class="string">'init_network_host'</span>, <span class="string">"add IPv6 address "</span> .. addr.ipv6)
+					<span class="keyword">if</span> <span class="keyword">not</span> exec(<span class="string">"ip -6 route replace "</span> .. addr.ipv6 .. <span class="string">"/128 dev "</span> .. NIC .. <span class="string">" || ip route replace "</span> .. addr.ipv6 .. <span class="string">"/128 dev "</span> .. NIC) <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span>
+					exec(<span class="string">"ip6tables -t nat -D POSTROUTING -m state --state NEW -s "</span> .. addr.ipv6 .. <span class="string">" -j MASQUERADE 2&gt;/dev/null"</span>)
+					<span class="keyword">if</span> (addr.nat) <span class="keyword">then</span> <span class="keyword">if</span> <span class="keyword">not</span> exec(<span class="string">"ip6tables -t nat -I POSTROUTING -m state --state NEW -s "</span> .. addr.ipv6 .. <span class="string">" -m state --state NEW -j MASQUERADE"</span>) <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span> <span class="keyword">end</span>
+					<span class="keyword">if</span> (addr.proxyarp) <span class="keyword">then</span> exec(<span class="string">"ip -6 neigh add proxy "</span> .. addr.ipv6 .. <span class="string">" dev "</span> .. addr.proxyarp .. <span class="string">" || ip neigh add proxy "</span> .. addr.ipv6 .. <span class="string">" dev "</span> .. addr.proxyarp) <span class="keyword">end</span>
+				<span class="keyword">end</span>
+			<span class="keyword">end</span> <span class="keyword">end</span>
+			<span class="keyword">if</span> interface.prefixes <span class="keyword">then</span> <span class="keyword">for</span> _, prefix <span class="keyword">in</span> <span class="global">pairs</span>(interface.prefixes) <span class="keyword">do</span>
+				<span class="keyword">if</span> prefix.ipv4 <span class="keyword">then</span>
+					debug_print(<span class="string">'init_network_host'</span>, <span class="string">"route IPv4 prefix "</span> .. prefix.ipv4)
+					<span class="keyword">if</span> int_v4 <span class="keyword">then</span>
+						<span class="keyword">if</span> <span class="keyword">not</span> exec(<span class="string">"ip -4 route replace "</span> .. prefix.ipv4 .. <span class="string">" via "</span> .. int_v4 .. <span class="string">" dev "</span> .. NIC .. <span class="string">" onlink || ip route replace "</span> .. prefix.ipv4 .. <span class="string">" via "</span> .. int_v4 .. <span class="string">" dev "</span> .. NIC .. <span class="string">" onlink"</span>) <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span>
+					<span class="keyword">else</span>
+						<span class="keyword">if</span> <span class="keyword">not</span> exec(<span class="string">"ip -4 route replace "</span> .. prefix.ipv4 .. <span class="string">" dev "</span> .. NIC .. <span class="string">" || ip route replace "</span> .. prefix.ipv4 .. <span class="string">" dev "</span> .. NIC) <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span>
+					<span class="keyword">end</span>
+				<span class="keyword">end</span>
+				<span class="keyword">if</span> prefix.ipv6 <span class="keyword">then</span>
+					debug_print(<span class="string">'init_network_host'</span>, <span class="string">"route IPv6 prefix "</span> .. prefix.ipv6)
+					<span class="keyword">if</span> <span class="keyword">not</span> exec(<span class="string">"ip -6 route replace "</span> .. prefix.ipv6 .. <span class="string">" via fe80::2 dev "</span> .. NIC .. <span class="string">" || ip route replace "</span> .. prefix.ipv6 .. <span class="string">" via fe80::2 dev "</span> .. NIC) <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span>
+				<span class="keyword">end</span>
+			<span class="keyword">end</span> <span class="keyword">end</span>
+			debug_print(<span class="string">'init_network_host'</span>, <span class="string">"Interface "</span> .. interface_count)
+		<span class="keyword">end</span>
+		<span class="keyword">if</span> interface.<span class="global">type</span> == <span class="string">"tinc"</span> <span class="keyword">then</span>
+			<span class="keyword">if</span> <span class="keyword">not</span> exists(<span class="string">'/usr/sbin/tincd'</span>) <span class="keyword">then</span> die(<span class="string">"Tinc not installed on host."</span>) <span class="keyword">end</span>
+
+			<span class="keyword">local</span> tincpath = <span class="string">'.tinc/'</span> .. interface.name .. <span class="string">'/'</span>
+			<span class="keyword">if</span> <span class="keyword">not</span> interface.tincname <span class="keyword">then</span> interface.tincname = interface.name <span class="keyword">end</span>
+			exec(<span class="string">"mkdir -p "</span>.. tincpath .. <span class="string">'hosts'</span>)
+
+			<span class="keyword">if</span> <span class="keyword">not</span> interface.tincport <span class="keyword">then</span> interface.tincport = bit32.bxor(pid, <span class="number">0xFFFF</span>) <span class="keyword">end</span>
+
+			<span class="keyword">local</span> hostconfig = exec(<span class="string">"cat "</span> .. tincpath .. <span class="string">"hosts/"</span> .. interface.tincname .. <span class="string">"|grep -v 'Subnet'"</span>, <span class="keyword">true</span>)
+
+			debug_print(<span class="string">'init_network_host'</span>, <span class="string">"Generating tinc config on port "</span> .. interface.tincport)
+			<span class="keyword">local</span> tinc_conf = <span class="string">"Name = "</span> .. interface.tincname .. <span class="string">"\n"</span>
+			tinc_conf = tinc_conf .. <span class="string">"Interface = "</span> .. interface.name .. <span class="string">"\n"</span>
+			tinc_conf = tinc_conf .. <span class="string">"Port = "</span> .. interface.tincport .. <span class="string">"\n"</span>
+			debug_print(<span class="string">'init_network_host'</span>, <span class="string">"Searching connectable hosts."</span>)
+			<span class="keyword">if</span> interface.tincpath <span class="keyword">then</span> tinc_conf = tinc_conf .. exec(<span class="string">"cd "</span> .. interface.tincpath .. <span class="string">"/hosts;for host in `grep -l 'Address' *`; do echo ConnectTo = $host; cp $host "</span>  .. base_path .. <span class="string">".tinc/"</span> .. interface.name .. <span class="string">"/hosts; done"</span>, <span class="keyword">true</span>) <span class="keyword">end</span>
+			write_file(tincpath .. <span class="string">'tinc.conf'</span>, tinc_conf)
+
+			<span class="keyword">if</span> interface.addresses <span class="keyword">then</span> <span class="keyword">for</span> _, addr <span class="keyword">in</span> <span class="global">pairs</span>(interface.addresses) <span class="keyword">do</span>
+				<span class="keyword">if</span> addr.ipv4 <span class="keyword">then</span>
+					debug_print(<span class="string">'init_network_host'</span>, <span class="string">"tinc route IPv4 address "</span> .. addr.ipv4)
+					hostconfig = hostconfig .. <span class="string">"Subnet="</span> .. addr.ipv4 ..<span class="string">"/32\n"</span>
+				<span class="keyword">end</span>
+				<span class="keyword">if</span> addr.ipv6 <span class="keyword">then</span>
+					debug_print(<span class="string">'init_network_host'</span>, <span class="string">"tinc route IPv6 address "</span> .. addr.ipv6)
+					hostconfig = hostconfig .. <span class="string">"Subnet="</span> .. addr.ipv6 ..<span class="string">"/128\n"</span>
+				<span class="keyword">end</span>
+			<span class="keyword">end</span> <span class="keyword">end</span>
+			<span class="keyword">if</span> interface.prefixes <span class="keyword">then</span> <span class="keyword">for</span> _, prefix <span class="keyword">in</span> <span class="global">pairs</span>(interface.prefixes) <span class="keyword">do</span>
+				<span class="keyword">if</span> prefix.ipv4 <span class="keyword">then</span>
+					debug_print(<span class="string">'init_network_host'</span>, <span class="string">"tinc route IPv4 prefix "</span> .. prefix.ipv4)
+					hostconfig = hostconfig .. <span class="string">"Subnet="</span> .. prefix.ipv4 ..<span class="string">"\n"</span>
+				<span class="keyword">end</span>
+				<span class="keyword">if</span> prefix.ipv6 <span class="keyword">then</span>
+					debug_print(<span class="string">'init_network_host'</span>, <span class="string">"tinc route IPv6 prefix "</span> .. prefix.ipv6)
+					hostconfig = hostconfig .. <span class="string">"Subnet="</span> .. prefix.ipv6 ..<span class="string">"\n"</span>
+				<span class="keyword">end</span>
+			<span class="keyword">end</span> <span class="keyword">end</span>
+
+			debug_print(<span class="string">'init_network_host'</span>, <span class="string">"Write tinc config."</span>)
+			write_file(tincpath .. <span class="string">'hosts/'</span> .. interface.tincname, hostconfig)
+
+			<span class="keyword">if</span> <span class="keyword">not</span> exists(tincpath .. <span class="string">'rsa_key.priv'</span>) <span class="keyword">then</span>
+				debug_print(<span class="string">'init_network_host'</span>, <span class="string">"Generating tinc keys."</span>)
+				exec(<span class="string">"echo | tincd -K -c "</span> .. tincpath)
+			<span class="keyword">end</span>
+
+			<span class="keyword">if</span> interface.tincpath <span class="keyword">then</span>
+				debug_print(<span class="string">'init_network_host'</span>, <span class="string">"Copy config to host."</span>)
+				exec(<span class="string">'cp '</span>.. tincpath .. <span class="string">'hosts/'</span> .. interface.tincname .. <span class="string">' '</span> .. interface.tincpath .. <span class="string">'/hosts'</span>)
+			<span class="keyword">end</span>
+
+			debug_print(<span class="string">'init_network_host'</span>, <span class="string">"Starting tinc."</span>)
+			exec(<span class="string">"tincd -k -c "</span> .. tincpath .. <span class="string">" &gt;/dev/null 2&gt;&amp;1"</span>)
+			<span class="keyword">if</span> <span class="keyword">not</span> exec(<span class="string">"tincd -D -c "</span> .. tincpath .. <span class="string">" 2&gt;/dev/null &amp;"</span>) <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span>
+
+			debug_print(<span class="string">'init_network_host'</span>, <span class="string">"Waiting for interface."</span>)
+			<span class="keyword">local</span> x = <span class="global">os</span>.time()
+			<span class="keyword">while</span> <span class="global">os</span>.difftime(<span class="global">os</span>.time(), x) &lt; <span class="number">10</span> <span class="keyword">and</span> <span class="keyword">not</span> exists(<span class="string">"/proc/sys/net/ipv4/conf/"</span> .. interface.name) <span class="keyword">do</span> <span class="keyword">if</span> <span class="keyword">not</span> exec(<span class="string">"sleep 0.1"</span>) <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span> <span class="keyword">end</span>
+
+			<span class="keyword">if</span> <span class="keyword">not</span> exec(<span class="string">"ip link set dev "</span> .. interface.name .. <span class="string">" netns "</span> .. <span class="global">string</span>.format(<span class="string">"%.0f"</span>, pid)) <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span>
+		<span class="keyword">end</span>
+	<span class="keyword">end</span>
+	debug_print(<span class="string">'init_network_host'</span>, <span class="string">"return 0"</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> init_network_child()
+	debug_print(<span class="string">'init_network_child'</span>, <span class="string">'EXEC'</span>)
+	<span class="keyword">if</span> <span class="keyword">not</span> network.interfaces <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">0</span> <span class="keyword">end</span>
+	exec_or_die(<span class="string">"ifconfig lo up"</span>)
+	<span class="keyword">for</span> name, interface <span class="keyword">in</span> <span class="global">pairs</span>(network.interfaces) <span class="keyword">do</span>
+		debug_print(<span class="string">'init_network_child'</span>, <span class="string">"Interface "</span> .. interface.name .. <span class="string">" - "</span> .. interface.<span class="global">type</span>)
+		exec_or_die(<span class="string">"ifconfig "</span> .. interface.name .. <span class="string">" up"</span>)
+		<span class="keyword">if</span> interface.default_route <span class="keyword">then</span>
+			exec_or_die(<span class="string">"ip -4 route add 100.64.0.0/32 dev "</span> .. interface.name)
+			exec_or_die(<span class="string">"ip -4 route add default dev "</span> .. interface.name .. <span class="string">" via 100.64.0.0"</span>)
+			exec_or_die(<span class="string">"ip -6 route add default dev "</span> .. interface.name .. <span class="string">" via fe80::1"</span>)
+		<span class="keyword">end</span>
+		exec_or_die(<span class="string">"ip -6 addr add fe80::2 dev "</span> .. interface.name)
+		<span class="keyword">if</span> interface.addresses <span class="keyword">then</span> <span class="keyword">for</span> _, addr <span class="keyword">in</span> <span class="global">pairs</span>(interface.addresses) <span class="keyword">do</span>
+			<span class="keyword">if</span> addr.ipv4 <span class="keyword">then</span>
+				debug_print(<span class="string">'init_network_child'</span>, <span class="string">"add IPv4 address "</span> .. addr.ipv4)
+				exec_or_die(<span class="string">"ip -4 addr add "</span> .. addr.ipv4 .. <span class="string">" dev "</span> .. interface.name)
+			<span class="keyword">end</span>
+			<span class="keyword">if</span> addr.ipv6 <span class="keyword">then</span>
+				debug_print(<span class="string">'init_network_child'</span>, <span class="string">"add IPv6 address "</span> .. addr.ipv6)
+				exec_or_die(<span class="string">"ip -6 addr add "</span> .. addr.ipv6 .. <span class="string">" dev "</span> .. interface.name)
+			<span class="keyword">end</span>
+		<span class="keyword">end</span> <span class="keyword">end</span>
+		<span class="keyword">if</span> interface.prefixes <span class="keyword">then</span>
+			write_file(<span class="string">'/proc/sys/net/ipv4/conf/all/forwarding'</span>, <span class="string">'1'</span>)
+			write_file(<span class="string">'/proc/sys/net/ipv6/conf/all/forwarding'</span>, <span class="string">'1'</span>)
+		<span class="keyword">end</span>
+	<span class="keyword">end</span>
+	debug_print(<span class="string">'init_network_child'</span>, <span class="string">"return 0"</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> apply_config()
+	<span class="keyword">if</span> network.nameservers <span class="keyword">then</span>
+		debug_print(<span class="string">'init_network_child'</span>, <span class="string">"Write Nameservers to /etc/resolv.conf"</span>)
+		<span class="keyword">local</span> resolvconf=<span class="string">""</span>
+		<span class="keyword">for</span> _, nameserver <span class="keyword">in</span> <span class="global">pairs</span>(network.nameservers) <span class="keyword">do</span>
+			resolvconf = resolvconf .. <span class="string">"nameserver "</span> .. nameserver .. <span class="string">"\n"</span>
+		<span class="keyword">end</span>
+		write_file(<span class="string">'./etc/resolv.conf'</span>, resolvconf)
+	<span class="keyword">end</span>
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span></pre>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-03-17 07:43:26 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

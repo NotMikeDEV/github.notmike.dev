@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+
+<h2>Source</h2>
+<ul class="nowrap">
+  <li><a href="../source/autoip.lua.html">autoip.lua</a></li>
+  <li><a href="../source/bind.lua.html">bind.lua</a></li>
+  <li><a href="../source/caddy.lua.html">caddy.lua</a></li>
+  <li><a href="../source/mysql.lua.html">mysql.lua</a></li>
+  <li><a href="../source/nat64.lua.html">nat64.lua</a></li>
+  <li><a href="../source/network.lua.html">network.lua</a></li>
+  <li><a href="../source/nginx.lua.html">nginx.lua</a></li>
+  <li><a href="../source/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../source/php.lua.html">php.lua</a></li>
+  <li><a href="../source/rsync.lua.html">rsync.lua</a></li>
+  <li><a href="../source/samba.lua.html">samba.lua</a></li>
+  <li><strong>sshd.lua</strong></li>
+  <li><a href="../source/tinc.lua.html">tinc.lua</a></li>
+  <li><a href="../source/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../source/container.lua.html">container.lua</a></li>
+  <li><a href="../source/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../source/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../source/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../source/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../source/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../source/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../source/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../source/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/autoip.html">autoip</a></li>
+  <li><a href="../modules/bind.html">bind</a></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/network.html">network</a></li>
+  <li><a href="../modules/nginx.html">nginx</a></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/rsync.html">rsync</a></li>
+  <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><a href="../modules/tinc.html">tinc</a></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+    <h2>sshd.lua</h2>
+<pre>
+<span class="comment">---OpenSSH Server
+</span><span class="comment">--@module sshd
+</span>sshd = {}
+
+<span class="comment">---Set the root password.
+</span><a id="7"></a><span class="comment">--@param password string
+</span><span class="keyword">function</span> sshd:SetRootPassword(password)
+	sshd.root_password=password
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> install_container()
+	install_package(<span class="string">"openssh-server"</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> run()
+	exec(<span class="string">"/usr/sbin/sshd &lt;/dev/null &gt;/dev/null 2&gt;&amp;1 &amp;"</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> apply_config()
+	exec(<span class="string">"chmod 0700 /run/sshd; chown root:root /run/sshd"</span>)
+	<span class="keyword">if</span> <span class="keyword">not</span> sshd.root_password <span class="keyword">then</span>
+		sshd.root_password =<span class="string">''</span>
+
+		<span class="keyword">for</span> x = <span class="number">1</span>, <span class="global">math</span>.random(<span class="number">48</span>,<span class="number">64</span>) <span class="keyword">do</span>
+			<span class="keyword">if</span> (<span class="global">math</span>.random(<span class="number">0</span>,<span class="number">1</span>) == <span class="number">1</span>) <span class="keyword">then</span>
+				sshd.root_password = sshd.root_password .. <span class="global">string</span>.char(<span class="global">math</span>.random(<span class="number">97</span>, <span class="number">122</span>))
+			<span class="keyword">elseif</span> (<span class="global">math</span>.random(<span class="number">0</span>,<span class="number">1</span>) == <span class="number">1</span>) <span class="keyword">then</span>
+				sshd.root_password = sshd.root_password .. <span class="global">string</span>.char(<span class="global">math</span>.random(<span class="number">65</span>, <span class="number">90</span>))
+			<span class="keyword">else</span>
+				sshd.root_password = sshd.root_password .. <span class="global">string</span>.char(<span class="global">math</span>.random(<span class="number">48</span>, <span class="number">57</span>))
+			<span class="keyword">end</span>
+		<span class="keyword">end</span>
+		<span class="global">print</span>(<span class="string">"SSH root password for this session: "</span> .. sshd.root_password)
+	<span class="keyword">end</span>
+	exec(<span class="string">"( echo \""</span> .. sshd.root_password .. <span class="string">"\"; echo \""</span> .. sshd.root_password .. <span class="string">"\" ) | passwd"</span>)
+	write_file(<span class="string">"/etc/ssh/sshd_config"</span>, <span class="string">[[
+	Port 22
+	Protocol 2
+	HostKey /etc/ssh/ssh_host_rsa_key
+	HostKey /etc/ssh/ssh_host_dsa_key
+	HostKey /etc/ssh/ssh_host_ecdsa_key
+	HostKey /etc/ssh/ssh_host_ed25519_key
+	UsePrivilegeSeparation yes
+	KeyRegenerationInterval 3600
+	ServerKeyBits 1024
+	RSAAuthentication yes
+	PubkeyAuthentication yes
+	HostbasedAuthentication no
+	PasswordAuthentication yes
+	TCPKeepAlive yes
+	Subsystem sftp /usr/lib/openssh/sftp-server
+	UsePAM yes
+	PermitRootLogin yes
+	]]</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+Mount{path=<span class="string">"/run/sshd"</span>, <span class="global">type</span>=<span class="string">'tmpfs'</span>}
+Mount{path=<span class="string">"/etc/ssh/keys"</span>, <span class="global">type</span>=<span class="string">'map'</span>, source=<span class="string">'ssh_keys'</span>}</pre>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-03-17 07:43:26 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/autoip.html">autoip</a></li>
+  <li><a href="../modules/bind.html">bind</a></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><strong>network</strong></li>
+  <li><a href="../modules/nginx.html">nginx</a></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/rsync.html">rsync</a></li>
+  <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><a href="../modules/tinc.html">tinc</a></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>network</code></h1>
+<p>Container networking support.</p>
+<p>
+
+
+<pre>
+<span class="global">require</span>(<span class="string">"module/network"</span>)
+
+network:AddIP{ipv4=<span class="string">'10.0.0.1'</span>, ipv6=<span class="string">'fd00::1'</span>, nat=<span class="keyword">true</span>}
+</pre>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#AddIP">AddIP (address)</a></td>
+	<td class="summary">Add IP Address to container.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AddPrefix">AddPrefix (prefix)</a></td>
+	<td class="summary">Route Prefix to container.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AddNameserver">AddNameserver (nameserver)</a></td>
+	<td class="summary">Specify Nameserver to use in container.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AddInterface">AddInterface (interface)</a></td>
+	<td class="summary">Add an interface to the container.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#interface:AddIP">interface:AddIP (address)</a></td>
+	<td class="summary">Add IP Address to interface</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#interface:AddPrefix">interface:AddPrefix (prefix)</a></td>
+	<td class="summary">Route Prefix to interface</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#address">address</a></td>
+	<td class="summary">Contains an IP Address.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#prefix">prefix</a></td>
+	<td class="summary">Contains an IP Prefix.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#interface">interface</a></td>
+	<td class="summary">Contains a network interface.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "AddIP"></a>
+    <strong>AddIP (address)</strong>
+    <a style="float:right;" href="../source/network.lua.html#18">line 18</a>
+    </dt>
+    <dd>
+    Add IP Address to container.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">address</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/network.html#address">address</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "AddPrefix"></a>
+    <strong>AddPrefix (prefix)</strong>
+    <a style="float:right;" href="../source/network.lua.html#31">line 31</a>
+    </dt>
+    <dd>
+    Route Prefix to container.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">prefix</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/network.html#prefix">prefix</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "AddNameserver"></a>
+    <strong>AddNameserver (nameserver)</strong>
+    <a style="float:right;" href="../source/network.lua.html#39">line 39</a>
+    </dt>
+    <dd>
+    Specify Nameserver to use in container.
+Call multiple times to configure multiple servers.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">nameserver</span>
+         string Nameserver IP Address.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AddInterface"></a>
+    <strong>AddInterface (interface)</strong>
+    <a style="float:right;" href="../source/network.lua.html#58">line 58</a>
+    </dt>
+    <dd>
+    Add an interface to the container.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">interface</span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        interface
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/network.html#interface">interface</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> NIC = network:AddInterface{<span class="global">type</span>=<span class="string">'ethernet'</span>, name=<span class="string">'net0'</span>}
+IC:AddIP{ipv4=<span class="string">'10.0.0.1'</span>, ipv6=<span class="string">'fc00::1'</span>, nat=<span class="keyword">true</span>}
+IC:AddPrefix{ipv4=<span class="string">'10.0.0.0/24'</span>, ipv6=<span class="string">'fc00::/64'</span>}</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "interface:AddIP"></a>
+    <strong>interface:AddIP (address)</strong>
+    <a style="float:right;" href="../source/network.lua.html#62">line 62</a>
+    </dt>
+    <dd>
+    Add IP Address to interface
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">address</span>
+         table {ipv4='10.0.0.1', ipv6='fd00::1', nat=false, proxyarp='eth0'}
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "interface:AddPrefix"></a>
+    <strong>interface:AddPrefix (prefix)</strong>
+    <a style="float:right;" href="../source/network.lua.html#68">line 68</a>
+    </dt>
+    <dd>
+    Route Prefix to interface
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">prefix</span>
+         table {ipv4='10.0.0.0/8', ipv6='fd00::/16'}
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "address"></a>
+    <strong>address</strong>
+    <a style="float:right;" href="../source/network.lua.html#15">line 15</a>
+    </dt>
+    <dd>
+    Contains an IP Address.
+
+    </ul>
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">ipv4</span>
+         string IPv4 Address.
+        </li>
+        <li><span class="parameter">ipv6</span>
+         string IPv6 Address.
+        </li>
+        <li><span class="parameter">nat</span>
+         boolean Enable NAT for these IP Addresses.
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">proxyarp</span>
+         string ProxyARP/ProxyNDP on the specified interface on the host.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "prefix"></a>
+    <strong>prefix</strong>
+    <a style="float:right;" href="../source/network.lua.html#28">line 28</a>
+    </dt>
+    <dd>
+    Contains an IP Prefix.
+
+    </ul>
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">ipv4</span>
+         string IPv4 Prefix to route.
+        </li>
+        <li><span class="parameter">ipv6</span>
+         string IPv6 Prefix to route.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "interface"></a>
+    <strong>interface</strong>
+    <a style="float:right;" href="../source/network.lua.html#51">line 51</a>
+    </dt>
+    <dd>
+    Contains a network interface.
+
+    </ul>
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">type</span>
+         string Type of interface - ethernet/tinc.
+        </li>
+        <li><span class="parameter">name</span>
+         string Name of interface in guest.
+        </li>
+        <li><span class="parameter">default_route</span>
+         boolean Configure default route in container.
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">tincpath</span>
+         string For tinc networks, the path to the tinc directory on the host.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-03-17 07:43:26 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

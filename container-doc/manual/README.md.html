@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Dependencies">Dependencies </a></li>
+<li><a href="#Debian_Install">Debian Install </a></li>
+<li><a href="#Docs">Docs </a></li>
+<li><a href="#Quick_Overview">Quick Overview </a></li>
+</ul>
+
+
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
+  <li><strong>README</strong></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/autoip.html">autoip</a></li>
+  <li><a href="../modules/bind.html">bind</a></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/network.html">network</a></li>
+  <li><a href="../modules/nginx.html">nginx</a></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/rsync.html">rsync</a></li>
+  <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><a href="../modules/tinc.html">tinc</a></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+</ul>
+
+</div>
+
+<div id="content">
+
+
+<h1>Linux Container Building System <a href="https://travis-ci.org/notmike-uk/container"><img src="https://travis-ci.org/notmike-uk/container.svg?branch=master" alt="Build Status"/></a></h1>
+<p>Project Status: Pre-Pre-Pre-Alpha. I am actively developing the codebase and do push changes before testing them properly. Do not be surprised if an update deletes the entire contents of your server.</p>
+
+<p><a name="Dependencies"></a></p>
+<h2>Dependencies</h2>
+<p>Requires readline library (libreadline-dev).
+Container building requires debootstrap.
+Tinc networking requires tinc on the host.
+In theory if you have debootstrap and other required tools it should work on any linux kernel with namespace support, but only Debian is supported.</p>
+
+<p><a name="Debian_Install"></a></p>
+<h2>Debian Install</h2>
+
+<pre>
+apt install -y build-essential git debootstrap libreadline-dev tinc &amp;&amp; \
+git clone https://github.com/NotMikeUK/container.git &amp;&amp; \
+cd container &amp;&amp; \
+make install
+</pre>
+
+<p><a name="Docs"></a></p>
+<h2>Docs</h2>
+<p>Run 'make doc' to compile the documentation using LDoc.</p>
+
+<p>Run 'make doc_server' to launch a web server on port 8092 containing the documentation.</p>
+
+<p><a name="Quick_Overview"></a></p>
+<h2>Quick Overview</h2>
+<p>This is basically a glorified wrapper around the linux namespaces functionality, which is pretty much “chroot on steroids”.</p>
+
+<p>It creates a virtual file system which gets mounted read-only, apart from specific directories that get mapped to folders outside the container root. When an application launches it only sees its own filesystem, PID 1 is the container host process and it won’t see processes running outside the container.</p>
+
+<p>When network isolation is used the application also gets its own network interface and loopback and does not see the host network interfaces, instead its IP traffic is routed via a virtual adaptor connected to the host.</p>
+
+<p>The configuration script is run through a Turing complete interpreter, so should be infinitely extendable.</p>
+
+<h4>It is designed for packaging applications/services, and is not by itself a security measure.</h4>
+<p>Things in the container run as root, and there is no way to prevent root breaking out of a jail. Because of this no attempt has been made to "lock down the container". Any security measures would not hinder a determined attacker but may cause issues for legitimate applications, therefore full host access is considered a feature for convenience.</p>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-03-17 07:43:26 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

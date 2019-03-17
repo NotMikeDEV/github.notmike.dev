@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+
+<h2>Source</h2>
+<ul class="nowrap">
+  <li><a href="../source/autoip.lua.html">autoip.lua</a></li>
+  <li><a href="../source/bind.lua.html">bind.lua</a></li>
+  <li><a href="../source/caddy.lua.html">caddy.lua</a></li>
+  <li><a href="../source/mysql.lua.html">mysql.lua</a></li>
+  <li><strong>nat64.lua</strong></li>
+  <li><a href="../source/network.lua.html">network.lua</a></li>
+  <li><a href="../source/nginx.lua.html">nginx.lua</a></li>
+  <li><a href="../source/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../source/php.lua.html">php.lua</a></li>
+  <li><a href="../source/rsync.lua.html">rsync.lua</a></li>
+  <li><a href="../source/samba.lua.html">samba.lua</a></li>
+  <li><a href="../source/sshd.lua.html">sshd.lua</a></li>
+  <li><a href="../source/tinc.lua.html">tinc.lua</a></li>
+  <li><a href="../source/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../source/container.lua.html">container.lua</a></li>
+  <li><a href="../source/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../source/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../source/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../source/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../source/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../source/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../source/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../source/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/autoip.html">autoip</a></li>
+  <li><a href="../modules/bind.html">bind</a></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/network.html">network</a></li>
+  <li><a href="../modules/nginx.html">nginx</a></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/rsync.html">rsync</a></li>
+  <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><a href="../modules/tinc.html">tinc</a></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+    <h2>nat64.lua</h2>
+<pre>
+<span class="comment">---NAT64 Gateway.
+</span><span class="comment">--@module nat64
+</span>
+<span class="comment">---NAT64 Configuration.
+</span><span class="comment">--@field ipv4 string IPv4 Address of gateway.
+</span><span class="comment">--@field prefix string IPv6 Prefix to route via NAT64.
+</span><span class="comment">--@field[opt] pool string IPv4 Pool to use (Auto-NATed).
+</span><a id="9"></a><span class="comment">--@table nat64config
+</span>nat64 = {}
+
+<span class="keyword">if</span> <span class="keyword">not</span> network <span class="keyword">then</span> die(<span class="string">"Error: nat64 module requires network module."</span>) <span class="keyword">end</span>
+
+<span class="comment">---Set the NAT64 gateway parameters.
+</span><a id="15"></a><span class="comment">--@param nat64config nat64config
+</span><span class="keyword">function</span> nat64:SetNAT64(nat64config)
+	<span class="keyword">if</span> <span class="keyword">not</span> nat64config.pool <span class="keyword">then</span> nat64config.pool = <span class="string">"100.64.0.0/16"</span> <span class="keyword">end</span>
+	network:AddIP{ipv4=nat64config.ipv4, nat=<span class="keyword">true</span>}
+	network:AddPrefix{ipv6=nat64config.prefix, nat=<span class="keyword">false</span>}
+	nat64 = nat64config
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> install_container()
+	install_package(<span class="string">"tayga"</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> run()
+	<span class="keyword">if</span> <span class="keyword">not</span> nat64.ipv4 <span class="keyword">or</span> <span class="keyword">not</span> nat64.prefix <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">0</span> <span class="keyword">end</span>
+	exec(<span class="string">"tayga"</span>)
+	exec(<span class="string">"iptables -t nat -A POSTROUTING -s "</span> .. nat64.pool .. <span class="string">" -j MASQUERADE"</span>)
+	exec(<span class="string">"ifconfig nat64 "</span> .. nat64.ipv4 .. <span class="string">" up"</span>)
+	exec(<span class="string">"ip -4 route add "</span> .. nat64.pool .. <span class="string">" dev nat64"</span>)
+	exec(<span class="string">"ip -6 route add "</span> .. nat64.prefix .. <span class="string">" dev nat64"</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> apply_config()
+	<span class="keyword">if</span> <span class="keyword">not</span> nat64.ipv4 <span class="keyword">or</span> <span class="keyword">not</span> nat64.prefix <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">0</span> <span class="keyword">end</span>
+	write_file(<span class="string">'/etc/tayga.conf'</span>, <span class="string">[[
+tun-device nat64
+ipv4-addr ]]</span> .. nat64.ipv4 .. <span class="string">[[
+
+prefix ]]</span> .. nat64.prefix .. <span class="string">[[
+
+dynamic-pool ]]</span> .. nat64.pool .. <span class="string">[[
+
+data-dir /tmp
+]]</span> )
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span></pre>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-03-17 07:43:26 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

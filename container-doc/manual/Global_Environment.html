@@ -1,0 +1,705 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+<li><a href="#Callbacks">Callbacks </a></li>
+</ul>
+
+
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><strong>Global_Environment</strong></li>
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/autoip.html">autoip</a></li>
+  <li><a href="../modules/bind.html">bind</a></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/network.html">network</a></li>
+  <li><a href="../modules/nginx.html">nginx</a></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/rsync.html">rsync</a></li>
+  <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><a href="../modules/tinc.html">tinc</a></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Topic <code>Global_Environment</code></h1>
+<p>Global API functions.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#exec">exec (command, capture_output)</a></td>
+	<td class="summary">Execute command.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#exec_or_die">exec_or_die (command)</a></td>
+	<td class="summary">Execute command, terminate on failure.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#install_package">install_package (name)</a></td>
+	<td class="summary">Install package using apt.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#die">die (reason)</a></td>
+	<td class="summary">Terminate execution.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Mount">Mount (mount)</a></td>
+	<td class="summary">Mount Filesystem.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#require">require (modulename)</a></td>
+	<td class="summary">Load external file</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#read_file">read_file (filename)</a></td>
+	<td class="summary">Read file contents.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#write_file">write_file (filename, contents)</a></td>
+	<td class="summary">Write to a file.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#exists">exists (name)</a></td>
+	<td class="summary">Check if file exists.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isFile">isFile (name)</a></td>
+	<td class="summary">Check if file is a file.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isDir">isDir (name)</a></td>
+	<td class="summary">Check if file is a directory.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#dirname">dirname (name)</a></td>
+	<td class="summary">Get the path to a file.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#enable_debug">enable_debug (filter)</a></td>
+	<td class="summary">Enable debugging.</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#mount">mount</a></td>
+	<td class="summary">Mount point.</td>
+	</tr>
+</table>
+<h2><a href="#Callbacks">Callbacks </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#install_container">install_container ()</a></td>
+	<td class="summary">Callback executed to install container applications.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#run">run ()</a></td>
+	<td class="summary">Callback executed to launch container applications.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#background">background ()</a></td>
+	<td class="summary">Callback launched as daemon when container has launched.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#apply_config">apply_config ()</a></td>
+	<td class="summary">Callback executed to write configuration files.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#init_network_needed">init_network_needed ()</a></td>
+	<td class="summary">Callback executed to test if container neets an isolated network</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#init_network_host">init_network_host (pid)</a></td>
+	<td class="summary">Callback executed to initialise host networking.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#init_network_child">init_network_child ()</a></td>
+	<td class="summary">Callback executed to initialise child networking.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "exec"></a>
+    <strong>exec (command, capture_output)</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#10">line 10</a>
+    </dt>
+    <dd>
+    Execute command.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">command</span>
+         string.
+        </li>
+        <li><span class="parameter">capture_output</span>
+         boolean return stdout instead of true/false.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean success true/false.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "exec_or_die"></a>
+    <strong>exec_or_die (command)</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#30">line 30</a>
+    </dt>
+    <dd>
+    Execute command, terminate on failure.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">command</span>
+         string.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean true.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "install_package"></a>
+    <strong>install_package (name)</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#39">line 39</a>
+    </dt>
+    <dd>
+    Install package using apt.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         string.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "die"></a>
+    <strong>die (reason)</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#47">line 47</a>
+    </dt>
+    <dd>
+    Terminate execution.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">reason</span>
+         string.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Mount"></a>
+    <strong>Mount (mount)</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#64">line 64</a>
+    </dt>
+    <dd>
+    Mount Filesystem.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mount</span>
+         mount
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../manual/Global_Environment.html#mount">mount</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "require"></a>
+    <strong>require (modulename)</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#74">line 74</a>
+    </dt>
+    <dd>
+    Load external file
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">modulename</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "read_file"></a>
+    <strong>read_file (filename)</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#83">line 83</a>
+    </dt>
+    <dd>
+    Read file contents.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">filename</span>
+         string.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        string
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "write_file"></a>
+    <strong>write_file (filename, contents)</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#102">line 102</a>
+    </dt>
+    <dd>
+    Write to a file.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">filename</span>
+         string.
+        </li>
+        <li><span class="parameter">contents</span>
+         string.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        0
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "exists"></a>
+    <strong>exists (name)</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#115">line 115</a>
+    </dt>
+    <dd>
+    Check if file exists.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         string.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "isFile"></a>
+    <strong>isFile (name)</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#123">line 123</a>
+    </dt>
+    <dd>
+    Check if file is a file.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         string.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "isDir"></a>
+    <strong>isDir (name)</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#137">line 137</a>
+    </dt>
+    <dd>
+    Check if file is a directory.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         string.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "dirname"></a>
+    <strong>dirname (name)</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#144">line 144</a>
+    </dt>
+    <dd>
+    Get the path to a file.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         string.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "enable_debug"></a>
+    <strong>enable_debug (filter)</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#152">line 152</a>
+    </dt>
+    <dd>
+    Enable debugging.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">filter</span>
+         string Function to debug, nil for all.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "mount"></a>
+    <strong>mount</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#61">line 61</a>
+    </dt>
+    <dd>
+    Mount point.
+
+    </ul>
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">type</span>
+         string Type of mount, "map" or "tmpfs".
+        </li>
+        <li><span class="parameter">path</span>
+         string Target path in container.
+        </li>
+        <li><span class="parameter">source</span>
+         string For type 'map', specifies the source directory on the host.
+        </li>
+        <li><span class="parameter">size</span>
+         string For type 'tmpfs', specifies the size of the mount.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Callbacks"></a>Callbacks </h2>
+
+          <div class="section-description">
+          Define these functions to define behaviour that should be executed at the appropriate time.
+If the same function is defined in multiple files then all will be executed.</p>
+
+<p>Callbacks should always return 0 on success.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "install_container"></a>
+    <strong>install_container ()</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#172">line 172</a>
+    </dt>
+    <dd>
+    Callback executed to install container applications.
+
+    </ul>
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "run"></a>
+    <strong>run ()</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#178">line 178</a>
+    </dt>
+    <dd>
+    Callback executed to launch container applications.
+
+    </ul>
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "background"></a>
+    <strong>background ()</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#184">line 184</a>
+    </dt>
+    <dd>
+    Callback launched as daemon when container has launched.
+
+    </ul>
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "apply_config"></a>
+    <strong>apply_config ()</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#190">line 190</a>
+    </dt>
+    <dd>
+    Callback executed to write configuration files.
+
+    </ul>
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "init_network_needed"></a>
+    <strong>init_network_needed ()</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#221">line 221</a>
+    </dt>
+    <dd>
+    Callback executed to test if container neets an isolated network
+
+    </ul>
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        1 to initialise networking, 0 otherwise
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "init_network_host"></a>
+    <strong>init_network_host (pid)</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#227">line 227</a>
+    </dt>
+    <dd>
+    Callback executed to initialise host networking.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">pid</span>
+         int PID of container.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "init_network_child"></a>
+    <strong>init_network_child ()</strong>
+    <a style="float:right;" href="../source/Global_Environment.lua.html#233">line 233</a>
+    </dt>
+    <dd>
+    Callback executed to initialise child networking.
+
+    </ul>
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-03-17 07:43:26 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

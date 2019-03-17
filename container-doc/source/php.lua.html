@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+
+<h2>Source</h2>
+<ul class="nowrap">
+  <li><a href="../source/autoip.lua.html">autoip.lua</a></li>
+  <li><a href="../source/bind.lua.html">bind.lua</a></li>
+  <li><a href="../source/caddy.lua.html">caddy.lua</a></li>
+  <li><a href="../source/mysql.lua.html">mysql.lua</a></li>
+  <li><a href="../source/nat64.lua.html">nat64.lua</a></li>
+  <li><a href="../source/network.lua.html">network.lua</a></li>
+  <li><a href="../source/nginx.lua.html">nginx.lua</a></li>
+  <li><a href="../source/owncloud.lua.html">owncloud.lua</a></li>
+  <li><strong>php.lua</strong></li>
+  <li><a href="../source/rsync.lua.html">rsync.lua</a></li>
+  <li><a href="../source/samba.lua.html">samba.lua</a></li>
+  <li><a href="../source/sshd.lua.html">sshd.lua</a></li>
+  <li><a href="../source/tinc.lua.html">tinc.lua</a></li>
+  <li><a href="../source/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../source/container.lua.html">container.lua</a></li>
+  <li><a href="../source/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../source/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../source/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../source/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../source/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../source/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../source/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../source/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/autoip.html">autoip</a></li>
+  <li><a href="../modules/bind.html">bind</a></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/network.html">network</a></li>
+  <li><a href="../modules/nginx.html">nginx</a></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/rsync.html">rsync</a></li>
+  <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><a href="../modules/tinc.html">tinc</a></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+    <h2>php.lua</h2>
+<pre>
+<span class="comment">---PHP FastCGI Module.
+</span><span class="comment">--Automatically registers .php extension with caddy or nginx as FastCGI module.
+</span><span class="comment">--@module php
+</span>
+<a id="6"></a><span class="comment">---PHP Configuration
+</span>php={
+	short_open_tag		=<span class="string">"Off"</span>,	<span class="comment">--Default off.
+</span>	output_buffering	=<span class="number">4096</span>,	<span class="comment">--Default buffer size, default 4096.
+</span>	output_compression	=<span class="string">"Off"</span>,	<span class="comment">--Compress output buffer. Default off.
+</span>	memory_limit		=<span class="string">"64M"</span>,	<span class="comment">--PHP script memory limit. Default 64M.
+</span>	post_max_size		=<span class="string">"128M"</span>,<span class="comment">--Max POST Data size. Default 128M.
+</span>	upload_max_filesize	=<span class="string">"128M"</span>,<span class="comment">--Max total size of file uploads. Default 128M.
+</span>	max_file_uploads	=<span class="number">30</span>,	<span class="comment">--Max number of files per POST. Default 30.
+</span>	<span class="global">debug</span>			=<span class="keyword">false</span>,	<span class="comment">--Debug Mode. Sets Error Reporting. Enables xdebug remote debugging. Default false.
+</span>}
+<span class="keyword">if</span> php.<span class="global">debug</span> <span class="keyword">then</span> php.error_reporting = <span class="string">"E_ALL"</span> <span class="keyword">else</span> php.error_reporting = <span class="string">"E_NONE"</span> <span class="keyword">end</span>
+
+<span class="keyword">function</span> install_container()
+	<span class="global">print</span>(<span class="string">"Installing PHP."</span>)
+	install_package(<span class="string">"php-fpm php-cli php-gd php-curl php-mysql php-sqlite3 php-odbc php-imap php-memcached php-ssh2 php-zip php-xml php-dom php-mbstring php-xdebug"</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> apply_config()
+	<span class="keyword">local</span> PHPINI = <span class="string">"[PHP]\n"</span>
+	<span class="keyword">if</span> php.<span class="global">debug</span> <span class="keyword">then</span>
+		PHPINI = PHPINI .. <span class="string">[[
+engine=On
+expose_php = On
+display_errors = On
+display_startup_errors = On
+]]</span>
+	<span class="keyword">else</span>
+		PHPINI = PHPINI .. <span class="string">[[
+engine=On
+expose_php=off
+display_errors = Off
+display_startup_errors = Off
+]]</span>
+	<span class="keyword">end</span>
+	PHPINI = PHPINI .. <span class="string">"short_open_tag = "</span> .. php.short_open_tag ..<span class="string">"\n"</span>
+	PHPINI = PHPINI .. <span class="string">"output_buffering = "</span> .. php.output_buffering ..<span class="string">"\n"</span>
+	PHPINI = PHPINI .. <span class="string">"zlib.output_compression = "</span> .. php.output_compression ..<span class="string">"\n"</span>
+	PHPINI = PHPINI .. <span class="string">"memory_limit = "</span> .. php.memory_limit ..<span class="string">"\n"</span>
+	PHPINI = PHPINI .. <span class="string">"post_max_size = "</span> .. php.post_max_size ..<span class="string">"\n"</span>
+	PHPINI = PHPINI .. <span class="string">"error_reporting = "</span> .. php.error_reporting ..<span class="string">"\n"</span>
+	PHPINI = PHPINI .. <span class="string">"upload_max_filesize = "</span> .. php.upload_max_filesize ..<span class="string">"\n"</span>
+	PHPINI = PHPINI .. <span class="string">"max_file_uploads = "</span> .. php.max_file_uploads ..<span class="string">"\n"</span>
+	PHPINI = PHPINI .. <span class="string">[[
+asp_tags = Off
+precision = 14
+implicit_flush = Off
+unserialize_callback_func =
+serialize_precision = 32
+disable_functions = pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority,
+disable_classes =
+zend.enable_gc = On
+max_execution_time = 30
+max_input_time = 60
+log_errors = On
+log_errors_max_len = 1024
+ignore_repeated_errors = Off
+ignore_repeated_source = Off
+report_memleaks = On
+track_errors = Off
+html_errors = On
+variables_order = "GPCS"
+request_order = "GP"
+register_argc_argv = Off
+auto_globals_jit = On
+auto_prepend_file =
+auto_append_file =
+default_mimetype = "text/html"
+default_charset = "UTF-8"
+doc_root =
+user_dir =
+enable_dl = Off
+file_uploads = On
+allow_url_fopen = On
+allow_url_include = Off
+default_socket_timeout = 15
+[ODBC]
+odbc.allow_persistent = On
+odbc.check_persistent = On
+odbc.max_persistent = -1
+odbc.max_links = -1
+odbc.defaultlrl = 4096
+odbc.defaultbinmode = 1
+[Interbase]
+ibase.allow_persistent = 1
+ibase.max_persistent = -1
+ibase.max_links = -1
+ibase.timestampformat = "%Y-%m-%d %H:%M:%S"
+ibase.dateformat = "%Y-%m-%d"
+ibase.timeformat = "%H:%M:%S"
+[MySQL]
+mysql.allow_local_infile = On
+mysql.allow_persistent = On
+mysql.max_persistent = -1
+mysql.max_links = -1
+mysql.connect_timeout = 15
+[MySQLi]
+mysqli.max_persistent = -1
+mysqli.allow_persistent = On
+mysqli.max_links = -1
+mysqli.default_port = 3306
+mysqli.reconnect = Off
+[PostgreSQL]
+pgsql.allow_persistent = On
+pgsql.auto_reset_persistent = Off
+pgsql.max_persistent = -1
+pgsql.max_links = -1
+pgsql.ignore_notice = 0
+pgsql.log_notice = 0
+[Sybase-CT]
+sybct.allow_persistent = On
+sybct.max_persistent = -1
+sybct.max_links = -1
+sybct.min_server_severity = 10
+sybct.min_client_severity = 10
+[Session]
+session.save_handler = files
+session.use_strict_mode = 0
+session.use_cookies = 1
+session.use_only_cookies = 1
+session.name = S
+session.auto_start = 0
+session.cookie_lifetime = 0
+session.cookie_path = /
+session.cookie_domain =
+session.cookie_httponly =
+session.serialize_handler = php
+session.gc_probability = 0
+session.gc_divisor = 1000
+session.gc_maxlifetime = 1440
+session.referer_check =
+session.cache_limiter = nocache
+session.cache_expire = 180
+session.use_trans_sid = 0
+session.hash_function = 0
+session.hash_bits_per_character = 5
+url_rewriter.tags = "a=href,area=href,frame=src,input=src,form=fakeentry"
+[MSSQL]
+mssql.allow_persistent = On
+mssql.max_persistent = -1
+mssql.max_links = -1
+mssql.min_error_severity = 10
+mssql.min_message_severity = 10
+mssql.compatibility_mode = Off
+mssql.secure_connection = Off
+[soap]
+soap.wsdl_cache_enabled=1
+soap.wsdl_cache_dir="/tmp"
+soap.wsdl_cache_ttl=86400
+soap.wsdl_cache_limit = 5
+]]</span>
+	<span class="keyword">if</span> php.<span class="global">debug</span> <span class="keyword">then</span>
+		PHPINI = PHPINI .. <span class="string">"[xdebug]\n"</span>
+		PHPINI = PHPINI .. <span class="string">"zend_extension=xdebug.so\n"</span>
+		PHPINI = PHPINI .. <span class="string">"xdebug.default_enable=1\n"</span>
+		PHPINI = PHPINI .. <span class="string">"xdebug.default_enable=1\n"</span>
+		PHPINI = PHPINI .. <span class="string">"xdebug.force_display_errors=1\n"</span>
+		PHPINI = PHPINI .. <span class="string">"xdebug.remote_enable=On\n"</span>
+		PHPINI = PHPINI .. <span class="string">"xdebug.remote_connect_back=1\n"</span>
+		PHPINI = PHPINI .. <span class="string">"xdebug.remote_host=localhost\n"</span>
+		PHPINI = PHPINI .. <span class="string">"xdebug.remote_port=9000\n"</span>
+	<span class="keyword">end</span>
+	write_file(<span class="string">"./etc/php/7.0/fpm/php.ini"</span>, PHPINI)
+	write_file(<span class="string">"./etc/php/7.0/cli/php.ini"</span>, PHPINI)
+	write_file(<span class="string">"./etc/php/7.0/cgi/php.ini"</span>, PHPINI)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> run()
+	<span class="global">print</span>(<span class="string">"Starting PHP."</span>)
+	exec(<span class="string">"chmod 0777 /var/lib/php/sessions -R"</span>)
+	exec(<span class="string">"mkdir -p /run/php"</span>)
+	exec(<span class="string">"/usr/sbin/php-fpm7.0 &amp;"</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+Mount{ path=<span class="string">'/var/log/'</span>, <span class="global">type</span>=<span class="string">"map"</span>, source=<span class="string">"log"</span> }
+Mount{ path=<span class="string">'/var/run/'</span>, <span class="global">type</span>=<span class="string">"map"</span>, source=<span class="string">".run"</span> }
+Mount{ path=<span class="string">'/var/lib/php/sessions'</span>, <span class="global">type</span>=<span class="string">"tmpfs"</span>, size=<span class="string">"512M"</span> }
+Mount{ path=<span class="string">'/run/php/'</span>, <span class="global">type</span>=<span class="string">"tmpfs"</span>, size=<span class="string">"256M"</span> }
+
+<span class="keyword">if</span> caddy <span class="keyword">then</span> caddy:AddFastCGI{ext=<span class="string">'php'</span>,socket=<span class="string">'/run/php/php7.0-fpm.sock'</span>} <span class="keyword">end</span>
+<span class="keyword">if</span> nginx <span class="keyword">then</span> nginx:AddFastCGI{ext=<span class="string">'php'</span>,socket=<span class="string">'unix:/run/php/php7.0-fpm.sock'</span>} <span class="keyword">end</span></pre>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-03-17 07:43:26 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

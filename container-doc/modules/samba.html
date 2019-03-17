@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/autoip.html">autoip</a></li>
+  <li><a href="../modules/bind.html">bind</a></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/network.html">network</a></li>
+  <li><a href="../modules/nginx.html">nginx</a></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/rsync.html">rsync</a></li>
+  <li><strong>samba</strong></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><a href="../modules/tinc.html">tinc</a></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>samba</code></h1>
+<p>Samba File Server.</p>
+<p>
+
+
+<pre>
+<span class="global">require</span>(<span class="string">"module/samba"</span>)
+
+samba.hostname = <span class="string">'FILESERVER'</span>
+samba:Share{name=<span class="string">'test'</span>, path=<span class="string">'/mnt/test'</span>, browseable=<span class="keyword">true</span>}
+</pre>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Share">Share (share)</a></td>
+	<td class="summary">Add a new share.</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#samba">samba</a></td>
+	<td class="summary">Samba Configuration.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#share">share</a></td>
+	<td class="summary">Samba File Share.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Share"></a>
+    <strong>Share (share)</strong>
+    <a style="float:right;" href="../source/samba.lua.html#27">line 27</a>
+    </dt>
+    <dd>
+    Add a new share.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">share</span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        share
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/samba.html#share">share</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> FileStore = samba:Share{name=<span class="string">'test'</span>, path=<span class="string">'/mnt/test'</span>, browseable=<span class="keyword">true</span>}</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "samba"></a>
+    <strong>samba</strong>
+    <a style="float:right;" href="../source/samba.lua.html#9">line 9</a>
+    </dt>
+    <dd>
+    Samba Configuration.
+
+    </ul>
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">workgroup</span>
+        Workgroup.
+        </li>
+        <li><span class="parameter">hostname</span>
+        Server Name.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "share"></a>
+    <strong>share</strong>
+    <a style="float:right;" href="../source/samba.lua.html#22">line 22</a>
+    </dt>
+    <dd>
+    Samba File Share.
+
+    </ul>
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         string Name of share.
+        </li>
+        <li><span class="parameter">path</span>
+         string Path to share.
+        </li>
+        <li><span class="parameter">description</span>
+         string Description of share.
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">browseable</span>
+         boolean List share in browse requests.
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">readonly</span>
+         boolean Set share as read-only.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-03-17 07:43:26 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

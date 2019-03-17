@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+
+<h2>Source</h2>
+<ul class="nowrap">
+  <li><a href="../source/autoip.lua.html">autoip.lua</a></li>
+  <li><a href="../source/bind.lua.html">bind.lua</a></li>
+  <li><strong>caddy.lua</strong></li>
+  <li><a href="../source/mysql.lua.html">mysql.lua</a></li>
+  <li><a href="../source/nat64.lua.html">nat64.lua</a></li>
+  <li><a href="../source/network.lua.html">network.lua</a></li>
+  <li><a href="../source/nginx.lua.html">nginx.lua</a></li>
+  <li><a href="../source/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../source/php.lua.html">php.lua</a></li>
+  <li><a href="../source/rsync.lua.html">rsync.lua</a></li>
+  <li><a href="../source/samba.lua.html">samba.lua</a></li>
+  <li><a href="../source/sshd.lua.html">sshd.lua</a></li>
+  <li><a href="../source/tinc.lua.html">tinc.lua</a></li>
+  <li><a href="../source/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../source/container.lua.html">container.lua</a></li>
+  <li><a href="../source/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../source/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../source/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../source/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../source/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../source/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../source/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../source/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/autoip.html">autoip</a></li>
+  <li><a href="../modules/bind.html">bind</a></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/network.html">network</a></li>
+  <li><a href="../modules/nginx.html">nginx</a></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/rsync.html">rsync</a></li>
+  <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><a href="../modules/tinc.html">tinc</a></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+    <h2>caddy.lua</h2>
+<pre>
+<span class="comment">---Caddy web server.
+</span><span class="comment">--Loading the caddy module automatically exports /var/www to the docroot directory and /root to the home directory.
+</span><span class="comment">--The caddy object is also exposed under the name webserver.
+</span><span class="comment">--@module caddy
+</span>caddy={
+    config = {
+        logfile=<span class="string">'/var/log/caddy.log'</span> <span class="comment">-- Log Location.
+</span>    }
+}
+
+<span class="comment">---Website configuration.
+</span><span class="comment">--@field hostname string Hostname of website.
+</span><span class="comment">--@field[opt] port integer Port to listen on.
+</span><span class="comment">--@field[opt] root string Path to document root.
+</span><span class="comment">--@table website
+</span><a id="17"></a>
+<span class="comment">---Add a new website to caddy server config.
+</span><span class="comment">--@see website
+</span><span class="comment">--@param website
+</span><span class="comment">--@return website
+</span><a id="22"></a><span class="comment">--@usage local WebSite = caddy:AddWebsite{hostname='hostname', root='/path/to/docroot'}
+</span><span class="keyword">function</span> caddy:AddWebsite(website)
+	<span class="keyword">if</span> <span class="keyword">not</span> caddy.config.websites <span class="keyword">then</span> caddy.config.websites = {} <span class="keyword">end</span>
+
+	<span class="keyword">if</span> <span class="keyword">not</span> website.hostname <span class="keyword">then</span> website.hostname = <span class="string">''</span> <span class="keyword">end</span>
+	<span class="keyword">if</span> <span class="keyword">not</span> website.port <span class="keyword">then</span> website.port = <span class="number">80</span> <span class="keyword">end</span>
+	<span class="keyword">if</span> <span class="keyword">not</span> website.root <span class="keyword">then</span> website.root = <span class="string">"/var/www"</span> <span class="keyword">end</span>
+	<span class="keyword">if</span> website.hostname:find(<span class="string">":"</span>) <span class="keyword">then</span>
+		website.port = website.hostname:sub(website.hostname:find(<span class="string">":"</span>)+<span class="number">1</span>)
+		website.hostname = website.hostname:sub(<span class="number">0</span>, website.hostname:find(<span class="string">":"</span>) -<span class="number">1</span>)
+	<span class="keyword">end</span>
+
+	<span class="comment">---Redirect configuration.
+</span>	<span class="comment">--@field source string Source Path.
+</span>	<span class="comment">--@field target string Target Path.
+</span>	<span class="comment">--@field[opt] status int Status code to return.
+</span>	<span class="comment">--@table redirect
+</span><a id="39"></a>
+	<span class="comment">---Add redirect rule to the website.
+</span>	<span class="comment">--@see redirect
+</span>	<span class="comment">--@see website
+</span>	<span class="comment">--@param redirect
+</span>	<span class="comment">--@return website
+</span>	<span class="comment">--@usage local WebSite = caddy:AddWebsite{hostname='hostname', root='/path/to/docroot'}
+</span>	<a id="46"></a><span class="comment">--WebSite:AddRedirect{source='/source', target='/target', status=status}
+</span>	<span class="keyword">function</span> website:AddRedirect(redirect)
+		<span class="keyword">if</span> <span class="keyword">not</span> self.redirects <span class="keyword">then</span> self.redirects = {} <span class="keyword">end</span>
+		self.redirects[redirect.source] = redirect
+		<span class="keyword">return</span> self
+	<span class="keyword">end</span>
+
+	<span class="comment">---Rewrite rule.
+</span>	<span class="comment">--@field source string Source Path.
+</span>	<span class="comment">--@field target string Target Path.
+</span>	<span class="comment">--@table rewrite
+</span><a id="57"></a>
+	<span class="comment">---Add rewrite rule to the website.
+</span>	<span class="comment">--@see rewrite
+</span>	<span class="comment">--@see website
+</span>	<span class="comment">--@param rewrite
+</span>	<span class="comment">--@return website
+</span>	<span class="comment">--@usage local WebSite = caddy:AddWebsite{hostname='hostname', root='/path/to/docroot'}
+</span>	<a id="64"></a><span class="comment">--WebSite:AddRewrite{source='/source', target='/target'}
+</span>	<span class="keyword">function</span> website:AddRewrite(rewrite)
+		<span class="keyword">if</span> <span class="keyword">not</span> self.rewrites <span class="keyword">then</span> self.rewrites = {} <span class="keyword">end</span>
+		self.rewrites[rewrite.source] = rewrite
+		<span class="keyword">return</span> self
+	<span class="keyword">end</span>
+
+	<span class="comment">---Proxy rule.
+</span>	<span class="comment">--@field source string Source Path.
+</span>	<span class="comment">--@field target string Target to proxy to.
+</span>	<span class="comment">--@field hostname[opt] string Host: header to send to server.
+</span>	<span class="comment">--@table proxy
+</span><a id="76"></a>
+	<span class="comment">---Add proxy rule to the website.
+</span>	<span class="comment">--@see proxy
+</span>	<span class="comment">--@see website
+</span>	<span class="comment">--@param proxy
+</span>	<span class="comment">--@return website
+</span>	<span class="comment">--@usage local WebSite = caddy:AddWebsite{hostname='hostname', root='/path/to/docroot'}
+</span>	<a id="83"></a><span class="comment">--WebSite:AddProxy{source='/', target='127.0.0.1:8080'}
+</span>	<span class="keyword">function</span> website:AddProxy(proxy)
+		<span class="keyword">if</span> <span class="keyword">not</span> self.proxies <span class="keyword">then</span> self.proxies = {} <span class="keyword">end</span>
+		self.proxies[proxy.source] = proxy
+		<span class="keyword">return</span> self
+	<span class="keyword">end</span>
+
+	<span class="comment">---Websocket application.
+</span>	<span class="comment">--@field source string Source Path.
+</span>	<span class="comment">--@field target string Target application.
+</span>	<span class="comment">--@table websocket
+</span><a id="94"></a>
+	<span class="comment">---Add websocket rule to the website.
+</span>	<span class="comment">--@see websocket
+</span>	<span class="comment">--@see website
+</span>	<span class="comment">--@param websocket
+</span>	<span class="comment">--@return website
+</span>	<span class="comment">--@usage local WebSite = caddy:AddWebsite{hostname='hostname', root='/path/to/docroot'}
+</span>	<a id="101"></a><span class="comment">--WebSite:AddWebsocket{source='/cat', target='/bin/cat'}
+</span>	<span class="keyword">function</span> website:AddWebsocket(websocket)
+		<span class="keyword">if</span> <span class="keyword">not</span> self.websockets <span class="keyword">then</span> self.websockets = {} <span class="keyword">end</span>
+		self.websockets[websocket.source] = websocket
+		<span class="keyword">return</span> self
+	<span class="keyword">end</span>
+
+	caddy.config.websites[website.hostname .. <span class="string">':'</span> .. website.port]=website
+	<span class="keyword">return</span> website
+<span class="keyword">end</span>
+
+<span class="comment">---FastCGI server.
+</span><span class="comment">--@field ext string Filename extension to match.
+</span><span class="comment">--@field socket string Socket to connect to.
+</span><span class="comment">--@table fastcgiserver
+</span><a id="116"></a>
+<span class="comment">---Add a new FastCGI server caddy server config.
+</span><span class="comment">--@see fastcgiserver
+</span><span class="comment">--@param fastcgiserver
+</span><a id="120"></a><span class="comment">--@return fastcgiserver
+</span><span class="keyword">function</span> caddy:AddFastCGI(fastcgiserver)
+	<span class="keyword">if</span> <span class="keyword">not</span> caddy.config.fastcgi <span class="keyword">then</span> caddy.config.fastcgi = {} <span class="keyword">end</span>
+	caddy.config.fastcgi[fastcgiserver.ext] = fastcgiserver
+	<span class="keyword">return</span> fastcgiserver
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> caddy.generate_config(website)
+	<span class="keyword">local</span> config = <span class="string">""</span>
+	<span class="keyword">if</span> website.redirects <span class="keyword">then</span>
+		<span class="keyword">for</span> source, redirect <span class="keyword">in</span> pairsByKeys(website.redirects) <span class="keyword">do</span>
+			debug_print(<span class="string">'caddy.generate_config'</span>, <span class="string">"Redirect "</span> .. source)
+			<span class="keyword">if</span> <span class="keyword">not</span> redirect.status <span class="keyword">then</span> redirect.status = <span class="number">302</span> <span class="keyword">end</span>
+			config = config .. <span class="string">"\tredir "</span> .. source .. <span class="string">" "</span> .. redirect.target .. <span class="string">" "</span> .. redirect.status .. <span class="string">"\n"</span>
+		<span class="keyword">end</span>
+	<span class="keyword">end</span>
+	<span class="keyword">if</span> website.rewrites <span class="keyword">then</span>
+		<span class="keyword">for</span> source, rewrite <span class="keyword">in</span> pairsByKeys(website.rewrites) <span class="keyword">do</span>
+			debug_print(<span class="string">'caddy.generate_config'</span>, <span class="string">"Rewrite "</span> .. source)
+			config = config .. <span class="string">"\trewrite {\n\t\tregexp\t"</span> .. source .. <span class="string">"\n\t\tto\t"</span> .. rewrite.target .. <span class="string">"\n\t}\n"</span>
+		<span class="keyword">end</span>
+	<span class="keyword">end</span>
+	<span class="keyword">if</span> website.proxies <span class="keyword">then</span>
+		<span class="keyword">for</span> source, data <span class="keyword">in</span> pairsByKeys(website.proxies) <span class="keyword">do</span>
+			debug_print(<span class="string">'caddy.generate_config'</span>, <span class="string">"Proxy "</span> .. source)
+			config = config .. <span class="string">"\tproxy "</span> .. source .. <span class="string">" "</span> .. data.target .. <span class="string">" {\n"</span>
+			<span class="keyword">if</span> data.hostname <span class="keyword">then</span>
+				config = config .. <span class="string">"\t\theader_upstream Host "</span> .. data.hostname .. <span class="string">"\n"</span>
+			<span class="keyword">else</span>
+				config = config .. <span class="string">"\t\theader_upstream Host {host}\n"</span>
+			<span class="keyword">end</span>
+			config = config .. <span class="string">"\t\theader_upstream X-Real-IP {remote}\n"</span>
+			config = config .. <span class="string">"\t\theader_upstream X-Forwarded-For {remote}\n"</span>
+			config = config .. <span class="string">"\t\theader_upstream X-Forwarded-Proto {scheme}\n"</span>
+			config = config .. <span class="string">"\t}\n"</span>
+
+		<span class="keyword">end</span>
+	<span class="keyword">end</span>
+	<span class="keyword">if</span> website.websockets <span class="keyword">then</span>
+		<span class="keyword">for</span> source, rewrite <span class="keyword">in</span> pairsByKeys(website.websockets) <span class="keyword">do</span>
+			debug_print(<span class="string">'caddy.generate_config'</span>, <span class="string">"Websocket "</span> .. source)
+			config = config .. <span class="string">"\twebsocket "</span> .. source .. <span class="string">" "</span> .. rewrite.target .. <span class="string">"\n"</span>
+		<span class="keyword">end</span>
+	<span class="keyword">end</span>
+	<span class="keyword">if</span> caddy.config.fastcgi <span class="keyword">then</span>
+		<span class="keyword">for</span> name, value <span class="keyword">in</span> pairsByKeys(caddy.config.fastcgi) <span class="keyword">do</span>
+			debug_print(<span class="string">'caddy.generate_config'</span>, <span class="string">"FastCGI "</span> .. name)
+			config = config .. <span class="string">"\tfastcgi / "</span> .. value.socket .. <span class="string">" {\n"</span>
+			config = config .. <span class="string">"\t\text\t."</span> .. name .. <span class="string">"\n"</span>
+			config = config .. <span class="string">"\t\tsplit\t."</span> .. name .. <span class="string">"\n"</span>
+			config = config .. <span class="string">"\t\tindex\tindex."</span> .. name .. <span class="string">"\n"</span>
+			config = config .. <span class="string">"\t}\n"</span>
+		<span class="keyword">end</span>
+	<span class="keyword">end</span>
+        config = config .. <span class="string">"log "</span> .. caddy.config.logfile .. <span class="string">" {\n"</span>
+        config = config .. <span class="string">"\trotate_size 5\n"</span>
+        config = config .. <span class="string">"\trotate_age  14\n"</span>
+        config = config .. <span class="string">"\trotate_keep 20\n"</span>
+        config = config .. <span class="string">"}\n"</span>
+	<span class="keyword">return</span> config
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> install_container()
+	<span class="global">print</span>(<span class="string">"Installing Caddy."</span>)
+	exec(<span class="string">"mkdir -p /usr/src/caddy"</span>)
+	install_package(<span class="string">"ca-certificates"</span>)
+	debug_print(<span class="string">'install_container'</span>, <span class="string">"Detecting architecture:"</span>)
+	<span class="keyword">local</span> caddyarch = debian.arch
+	<span class="keyword">if</span> caddyarch:find(<span class="string">"amd64"</span>) <span class="keyword">then</span> caddyarch = <span class="string">"amd64"</span>
+	<span class="keyword">elseif</span> caddyarch:find(<span class="string">"x86_64"</span>) <span class="keyword">then</span> caddyarch = <span class="string">"amd64"</span>
+	<span class="keyword">elseif</span> caddyarch:find(<span class="string">"86"</span>) <span class="keyword">then</span> caddyarch = <span class="string">"386"</span>
+	<span class="keyword">elseif</span> caddyarch:find(<span class="string">"arm"</span>) <span class="keyword">then</span> caddyarch = <span class="string">"arm"</span>
+	<span class="keyword">end</span>
+	debug_print(<span class="string">'install_container'</span>, caddyarch)
+
+	exec_or_die(<span class="string">"wget -qO- https://getcaddy.com | bash -s personal http.git"</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> apply_config()
+	<span class="keyword">if</span> <span class="keyword">not</span> caddy.config.websites <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">0</span> <span class="keyword">end</span>
+	<span class="keyword">local</span> config = <span class="string">""</span>
+	debug_print(<span class="string">'apply_config'</span>, <span class="string">"Generating Caddy config."</span>)
+	<span class="keyword">for</span> _, website <span class="keyword">in</span> pairsByKeys(caddy.config.websites) <span class="keyword">do</span>
+		debug_print(<span class="string">'apply_config'</span>, website.hostname .. <span class="string">':'</span> .. website.port)
+		config = config .. website.hostname .. <span class="string">':'</span> .. website.port .. <span class="string">" {\n"</span>
+		<span class="keyword">if</span> <span class="keyword">not</span> website.root <span class="keyword">then</span> website.root = <span class="string">"/var/www"</span> <span class="keyword">end</span>
+		config = config .. <span class="string">"\troot "</span> .. website.root .. <span class="string">"\n"</span>
+		config = config .. caddy.generate_config(website)
+		config = config .. <span class="string">"\n}\n\n"</span>
+	<span class="keyword">end</span>
+	write_file(<span class="string">"/etc/Caddyfile"</span>, config)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> background()
+	<span class="keyword">if</span> <span class="keyword">not</span> caddy.config.websites <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">0</span> <span class="keyword">end</span>
+	<span class="global">print</span>(<span class="string">"Starting Caddy."</span>)
+	exec(<span class="string">"HOME=/root /usr/local/bin/caddy -agree -email fake@user.com -conf /etc/Caddyfile"</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+Mount{ path=<span class="string">'/var/www/'</span>, <span class="global">type</span>=<span class="string">"map"</span>, source=<span class="string">"docroot"</span> }
+Mount{ path=<span class="string">'/var/log'</span>, <span class="global">type</span>=<span class="string">"map"</span>, source=<span class="string">"log"</span>}
+Mount{ path=<span class="string">'/root/'</span>, <span class="global">type</span>=<span class="string">"map"</span>, source=<span class="string">"home"</span> }
+
+<span class="keyword">if</span> <span class="keyword">not</span> webserver <span class="keyword">then</span> webserver = caddy <span class="keyword">end</span></pre>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-03-17 07:43:26 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

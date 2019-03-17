@@ -1,0 +1,413 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/autoip.html">autoip</a></li>
+  <li><a href="../modules/bind.html">bind</a></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/network.html">network</a></li>
+  <li><strong>nginx</strong></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/rsync.html">rsync</a></li>
+  <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><a href="../modules/tinc.html">tinc</a></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>nginx</code></h1>
+<p>Nignx web server.</p>
+<p>Loading the nginx module automatically exports /var/www to the docroot directory.
+The nginx object is also exposed under the name webserver.</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#AddWebsite">AddWebsite (website)</a></td>
+	<td class="summary">Add a new website to nginx server config.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#website:AddRedirect">website:AddRedirect (redirect)</a></td>
+	<td class="summary">Add redirect rule to the website.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#website:AddRewrite">website:AddRewrite (rewrite)</a></td>
+	<td class="summary">Add rewrite rule to the website.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#website:AddProxy">website:AddProxy (proxy)</a></td>
+	<td class="summary">Add proxy rule to the website.</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#website">website</a></td>
+	<td class="summary">Website configuration.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#redirect">redirect</a></td>
+	<td class="summary">Redirect configuration.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#rewrite">rewrite</a></td>
+	<td class="summary">Rewrite rule.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#proxy">proxy</a></td>
+	<td class="summary">Proxy rule.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "AddWebsite"></a>
+    <strong>AddWebsite (website)</strong>
+    <a style="float:right;" href="../source/nginx.lua.html#20">line 20</a>
+    </dt>
+    <dd>
+    Add a new website to nginx server config.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">website</span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        website
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/nginx.html#website">website</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> WebSite = nginx:AddWebsite{hostname=<span class="string">'hostname'</span>, root=<span class="string">'/path/to/docroot'</span>}</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "website:AddRedirect"></a>
+    <strong>website:AddRedirect (redirect)</strong>
+    <a style="float:right;" href="../source/nginx.lua.html#44">line 44</a>
+    </dt>
+    <dd>
+    Add redirect rule to the website.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">redirect</span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        website
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <li><a href="../modules/nginx.html#redirect">redirect</a></li>
+         <li><a href="../modules/nginx.html#website">website</a></li>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> WebSite = nginx:AddWebsite{hostname=<span class="string">'hostname'</span>, root=<span class="string">'/path/to/docroot'</span>}
+WebSite:AddRedirect{source=<span class="string">'/source'</span>, target=<span class="string">'/target'</span>, status=status}</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "website:AddRewrite"></a>
+    <strong>website:AddRewrite (rewrite)</strong>
+    <a style="float:right;" href="../source/nginx.lua.html#62">line 62</a>
+    </dt>
+    <dd>
+    Add rewrite rule to the website.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">rewrite</span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        website
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <li><a href="../modules/nginx.html#rewrite">rewrite</a></li>
+         <li><a href="../modules/nginx.html#website">website</a></li>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> WebSite = nginx:AddWebsite{hostname=<span class="string">'hostname'</span>, root=<span class="string">'/path/to/docroot'</span>}
+WebSite:AddRewrite{source=<span class="string">'/source'</span>, target=<span class="string">'/target'</span>}</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "website:AddProxy"></a>
+    <strong>website:AddProxy (proxy)</strong>
+    <a style="float:right;" href="../source/nginx.lua.html#81">line 81</a>
+    </dt>
+    <dd>
+    Add proxy rule to the website.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">proxy</span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        website
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <li><a href="../modules/nginx.html#proxy">proxy</a></li>
+         <li><a href="../modules/nginx.html#website">website</a></li>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> WebSite = nginx:AddWebsite{hostname=<span class="string">'hostname'</span>, root=<span class="string">'/path/to/docroot'</span>}
+WebSite:AddProxy{source=<span class="string">'/'</span>, target=<span class="string">'127.0.0.1:8080'</span>}</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "website"></a>
+    <strong>website</strong>
+    <a style="float:right;" href="../source/nginx.lua.html#15">line 15</a>
+    </dt>
+    <dd>
+    Website configuration.
+
+    </ul>
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">hostname</span>
+         string Hostname of website.
+        </li>
+        <li><span class="parameter">port</span>
+         integer Port to listen on.
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">root</span>
+         string Path to document root.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "redirect"></a>
+    <strong>redirect</strong>
+    <a style="float:right;" href="../source/nginx.lua.html#37">line 37</a>
+    </dt>
+    <dd>
+    Redirect configuration.
+
+    </ul>
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">source</span>
+         string Source Path.
+        </li>
+        <li><span class="parameter">target</span>
+         string Target Path.
+        </li>
+        <li><span class="parameter">status</span>
+         int Status code to return.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rewrite"></a>
+    <strong>rewrite</strong>
+    <a style="float:right;" href="../source/nginx.lua.html#55">line 55</a>
+    </dt>
+    <dd>
+    Rewrite rule.
+
+    </ul>
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">source</span>
+         string Source Path.
+        </li>
+        <li><span class="parameter">target</span>
+         string Target Path.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "proxy"></a>
+    <strong>proxy</strong>
+    <a style="float:right;" href="../source/nginx.lua.html#74">line 74</a>
+    </dt>
+    <dd>
+    Proxy rule.
+
+    </ul>
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">source</span>
+         string Source Path.
+        </li>
+        <li><span class="parameter">target</span>
+         string Target to proxy to.
+        </li>
+        <li><span class="parameter">hostname</span>
+         string Rewirte Host: header.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-03-17 07:43:26 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

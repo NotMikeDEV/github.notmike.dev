@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+
+<h2>Source</h2>
+<ul class="nowrap">
+  <li><a href="../source/autoip.lua.html">autoip.lua</a></li>
+  <li><a href="../source/bind.lua.html">bind.lua</a></li>
+  <li><a href="../source/caddy.lua.html">caddy.lua</a></li>
+  <li><a href="../source/mysql.lua.html">mysql.lua</a></li>
+  <li><a href="../source/nat64.lua.html">nat64.lua</a></li>
+  <li><a href="../source/network.lua.html">network.lua</a></li>
+  <li><a href="../source/nginx.lua.html">nginx.lua</a></li>
+  <li><a href="../source/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../source/php.lua.html">php.lua</a></li>
+  <li><a href="../source/rsync.lua.html">rsync.lua</a></li>
+  <li><a href="../source/samba.lua.html">samba.lua</a></li>
+  <li><a href="../source/sshd.lua.html">sshd.lua</a></li>
+  <li><a href="../source/tinc.lua.html">tinc.lua</a></li>
+  <li><a href="../source/wordpress.lua.html">wordpress.lua</a></li>
+  <li><strong>container.lua</strong></li>
+  <li><a href="../source/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../source/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../source/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../source/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../source/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../source/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../source/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../source/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/autoip.html">autoip</a></li>
+  <li><a href="../modules/bind.html">bind</a></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/network.html">network</a></li>
+  <li><a href="../modules/nginx.html">nginx</a></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/rsync.html">rsync</a></li>
+  <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><a href="../modules/tinc.html">tinc</a></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+    <h2>container.lua</h2>
+<pre>
+<span class="comment">---Global API functions.
+</span><span class="comment">--@topic Global_Environment
+</span>
+<span class="global">math</span>.randomseed(<span class="global">os</span>.time() + (<span class="global">os</span>.clock()*<span class="number">1000000</span>))
+
+<span class="comment">---Execute command.
+</span><span class="comment">--@param command string.
+</span><span class="comment">--@param capture_output boolean return stdout instead of true/false.
+</span><a id="10"></a><span class="comment">--@return boolean success true/false.
+</span><span class="keyword">function</span> exec(command, capture_output)
+	debug_print(<span class="string">'exec'</span>, command)
+	<span class="comment">--capture output
+</span>	<span class="keyword">if</span> capture_output <span class="keyword">then</span>
+		<span class="keyword">local</span> f = <span class="global">assert</span>(<span class="global">io</span>.popen(command, <span class="string">'r'</span>))
+		<span class="keyword">local</span> output = f:read(<span class="string">'*a'</span>)
+		f:close()
+		debug_print(<span class="string">'exec_ret'</span>, output)
+		<span class="keyword">return</span> output
+	<span class="keyword">end</span>
+	<span class="comment">--execute normally
+</span>	<span class="keyword">local</span> ret = <span class="global">os</span>.execute(command)
+	retval = ret
+	debug_print(<span class="string">'exec_ret'</span>, retval)
+	<span class="keyword">return</span> ret
+<span class="keyword">end</span>
+
+<span class="comment">---Execute command, terminate on failure.
+</span><span class="comment">--@param command string.
+</span><a id="30"></a><span class="comment">--@return boolean true.
+</span><span class="keyword">function</span> exec_or_die(command)
+	debug_print(<span class="string">'exec_or_die'</span>, command)
+	<span class="keyword">local</span> ret = exec(command)
+	<span class="keyword">if</span> <span class="keyword">not</span> ret <span class="keyword">then</span> die(<span class="string">"Error Executing "</span> .. command) <span class="keyword">end</span>
+	<span class="keyword">return</span> ret
+<span class="keyword">end</span>
+
+<span class="comment">---Install package using apt.
+</span><a id="39"></a><span class="comment">--@param name string.
+</span><span class="keyword">function</span> install_package(name)
+	debug_print(<span class="string">'install_package'</span>, <span class="string">'install_package("'</span> .. name .. <span class="string">'")'</span>)
+	exec_or_die(<span class="string">"RUNLEVEL=1 DEBIAN_FRONTEND=noninteractive apt-get install -qy --force-yes "</span> .. name)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="comment">---Terminate execution.
+</span><a id="47"></a><span class="comment">--@param reason string.
+</span><span class="keyword">function</span> die(reason)
+	<span class="global">print</span>(reason .. <span class="string">"\r\n"</span>)
+	<span class="global">os</span>.exit(<span class="number">1</span>)
+<span class="keyword">end</span>
+
+<span class="keyword">local</span> filesystems = {}
+
+<span class="comment">---Mount point.
+</span><span class="comment">--@param type string Type of mount, "map" or "tmpfs".
+</span><span class="comment">--@param path string Target path in container.
+</span><span class="comment">--@param source string For type 'map', specifies the source directory on the host.
+</span><span class="comment">--@param size string For type 'tmpfs', specifies the size of the mount.
+</span><span class="comment">--@table mount
+</span><a id="61"></a>
+<span class="comment">---Mount Filesystem.
+</span><span class="comment">--@see mount
+</span><a id="64"></a><span class="comment">--@param mount mount
+</span><span class="keyword">function</span> Mount(mount)
+	filesystems[mount.path] = mount
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+Mount{ path=<span class="string">"/tmp"</span>, <span class="global">type</span>=<span class="string">"tmpfs"</span>, size=<span class="string">"2G"</span> }
+Mount{ path=<span class="string">"/run"</span>, <span class="global">type</span>=<span class="string">"tmpfs"</span>, size=<span class="string">"128M"</span> }
+
+include = <span class="global">require</span>
+<a id="74"></a><span class="comment">---Load external file
+</span><span class="keyword">function</span> <span class="global">require</span>(modulename)
+	debug_print(<span class="string">'require'</span>, modulename)
+	include(modulename)
+	FIX_ENVIRONMENT(modulename)
+<span class="keyword">end</span>
+
+<span class="comment">---Read file contents.
+</span><span class="comment">--@param filename string.
+</span><a id="83"></a><span class="comment">--@return string
+</span><span class="keyword">function</span> read_file(filename)
+	debug_print(<span class="string">'read_file'</span>, filename)
+	<span class="keyword">local</span> contents = <span class="string">""</span>
+	file = <span class="global">io</span>.open(filename, <span class="string">"r"</span>)
+	<span class="keyword">if</span> <span class="keyword">not</span> file <span class="keyword">then</span> <span class="keyword">return</span> <span class="keyword">nil</span> <span class="keyword">end</span>
+	<span class="global">io</span>.input(file)
+	<span class="keyword">while</span> <span class="keyword">true</span> <span class="keyword">do</span>
+		<span class="keyword">local</span> block = <span class="global">io</span>.read(<span class="number">1024</span>*<span class="number">1024</span>)
+		<span class="keyword">if</span> <span class="keyword">not</span> block <span class="keyword">then</span> <span class="keyword">break</span> <span class="keyword">end</span>
+		contents = contents .. block
+	<span class="keyword">end</span>
+	<span class="global">io</span>.close(file)
+	<span class="keyword">return</span> contents
+<span class="keyword">end</span>
+
+<span class="comment">---Write to a file.
+</span><span class="comment">--@param filename string.
+</span><span class="comment">--@param contents string.
+</span><a id="102"></a><span class="comment">--@return 0
+</span><span class="keyword">function</span> write_file(filename, contents)
+	debug_print(<span class="string">'write_file'</span>, filename .. <span class="string">"\n"</span> .. contents)
+	file = <span class="global">io</span>.open(filename, <span class="string">"w"</span>)
+	<span class="keyword">if</span> <span class="keyword">not</span> file <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span>
+	<span class="global">io</span>.output(file)
+	<span class="global">io</span>.write(contents)
+	<span class="global">io</span>.close(file)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="comment">---Check if file exists.
+</span><span class="comment">--@param name string.
+</span><a id="115"></a><span class="comment">--@return boolean
+</span><span class="keyword">function</span> exists(name)
+	<span class="keyword">if</span> <span class="global">type</span>(name)~=<span class="string">"string"</span> <span class="keyword">then</span> <span class="keyword">return</span> <span class="keyword">false</span> <span class="keyword">end</span>
+	<span class="keyword">return</span> <span class="global">os</span>.rename(name,name) <span class="keyword">and</span> <span class="keyword">true</span> <span class="keyword">or</span> <span class="keyword">false</span>
+<span class="keyword">end</span>
+
+<span class="comment">---Check if file is a file.
+</span><span class="comment">--@param name string.
+</span><a id="123"></a><span class="comment">--@return boolean
+</span><span class="keyword">function</span> isFile(name)
+	<span class="keyword">if</span> <span class="global">type</span>(name)~=<span class="string">"string"</span> <span class="keyword">then</span> <span class="keyword">return</span> <span class="keyword">false</span> <span class="keyword">end</span>
+	<span class="keyword">if</span> <span class="keyword">not</span> exists(name) <span class="keyword">then</span> <span class="keyword">return</span> <span class="keyword">false</span> <span class="keyword">end</span>
+	<span class="keyword">local</span> f = <span class="global">io</span>.open(name)
+	<span class="keyword">if</span> f <span class="keyword">then</span>
+		f:close()
+		<span class="keyword">return</span> <span class="keyword">true</span>
+	<span class="keyword">end</span>
+	<span class="keyword">return</span> <span class="keyword">false</span>
+<span class="keyword">end</span>
+
+<span class="comment">---Check if file is a directory.
+</span><span class="comment">--@param name string.
+</span><a id="137"></a><span class="comment">--@return boolean
+</span><span class="keyword">function</span> isDir(name)
+	<span class="keyword">return</span> (exists(name) <span class="keyword">and</span> <span class="keyword">not</span> isFile(name))
+<span class="keyword">end</span>
+
+<span class="comment">---Get the path to a file.
+</span><span class="comment">--@param name string.
+</span><a id="144"></a><span class="comment">--@return boolean
+</span><span class="keyword">function</span> dirname(name)
+	index = name:match(<span class="string">"^.*()/"</span>)
+	<span class="keyword">return</span> name:sub(<span class="number">0</span>,index)
+<span class="keyword">end</span>
+
+<span class="keyword">local</span> debug_table=<span class="keyword">nil</span>
+<span class="comment">---Enable debugging.
+</span><a id="152"></a><span class="comment">--@param filter string Function to debug, nil for all.
+</span><span class="keyword">function</span> enable_debug(filter)
+	<span class="keyword">if</span> <span class="keyword">not</span> debug_table <span class="keyword">then</span> debug_table = {} <span class="keyword">end</span>
+	<span class="keyword">if</span> <span class="keyword">not</span> filter <span class="keyword">then</span> filter = <span class="string">'all'</span> <span class="keyword">end</span>
+	debug_table[filter] = <span class="keyword">true</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> debug_print(filter, ...)
+	<span class="keyword">if</span> debug_table <span class="keyword">and</span> ( debug_table[filter] <span class="keyword">or</span> debug_table[<span class="string">'all'</span>] ) <span class="keyword">then</span>
+		<span class="global">print</span>(filter, ...)
+	<span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="comment">---Callbacks.
+</span><span class="comment">--Define these functions to define behaviour that should be executed at the appropriate time.
+</span><span class="comment">--If the same function is defined in multiple files then all will be executed.
+</span><span class="comment">--
+</span><span class="comment">--Callbacks should always return 0 on success.
+</span><span class="comment">--@section callbacks
+</span>
+<a id="172"></a><span class="comment">---Callback executed to install container applications.
+</span><span class="keyword">function</span> install_container()
+	debug_print(<span class="string">"install_container"</span>, <span class="string">'EXEC'</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<a id="178"></a><span class="comment">---Callback executed to launch container applications.
+</span><span class="keyword">function</span> run()
+	debug_print(<span class="string">"run"</span>, <span class="string">'EXEC'</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<a id="184"></a><span class="comment">---Callback launched as daemon when container has launched.
+</span><span class="keyword">function</span> background()
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">local</span> nameservers=<span class="keyword">nil</span>
+<a id="190"></a><span class="comment">---Callback executed to write configuration files.
+</span><span class="keyword">function</span> apply_config()
+	debug_print(<span class="string">'apply_config'</span>, <span class="string">'configure nameservers'</span>)
+	<span class="keyword">if</span> <span class="keyword">not</span> nameservers <span class="keyword">then</span>
+		<span class="keyword">local</span> file = <span class="global">io</span>.open(<span class="string">"/etc/resolv.conf"</span>, <span class="string">"r"</span>)
+		<span class="keyword">if</span> file <span class="keyword">then</span>
+			nameservers={}
+			<span class="global">io</span>.input(file)
+			<span class="keyword">local</span> line = <span class="global">io</span>.read(<span class="string">"*line"</span>)
+			<span class="keyword">while</span> line <span class="keyword">do</span>
+				<span class="keyword">local</span> server = line:match(<span class="string">"nameserver%s*(%g*)"</span>)
+				<span class="keyword">if</span> server == <span class="string">"::1"</span> <span class="keyword">then</span> server = <span class="string">"2001:4860:4860::8844"</span> <span class="keyword">end</span>
+				<span class="keyword">if</span> server == <span class="string">"127.0.0.1"</span> <span class="keyword">then</span> server = <span class="string">"8.8.4.4"</span> <span class="keyword">end</span>
+				<span class="keyword">if</span> server <span class="keyword">then</span> <span class="global">table</span>.insert(nameservers, server) <span class="keyword">end</span>
+				line = <span class="global">io</span>.read(<span class="string">"*line"</span>)
+			<span class="keyword">end</span>
+		<span class="global">io</span>.close(file)
+		<span class="keyword">end</span>
+	<span class="keyword">end</span>
+
+	<span class="keyword">if</span> nameservers <span class="keyword">then</span>
+		<span class="keyword">local</span> resolvconf = <span class="string">""</span>
+		<span class="keyword">for</span> _,server <span class="keyword">in</span> <span class="global">pairs</span>(nameservers) <span class="keyword">do</span>
+			resolvconf = resolvconf .. <span class="string">"nameserver "</span> .. server .. <span class="string">"\n"</span>
+		<span class="keyword">end</span>
+		<span class="keyword">if</span> resolvconf <span class="keyword">then</span> write_file(<span class="string">"etc/resolv.conf"</span>, resolvconf) <span class="keyword">end</span>
+	<span class="keyword">end</span>
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="comment">---Callback executed to test if container neets an isolated network
+</span><a id="221"></a><span class="comment">--@return 1 to initialise networking, 0 otherwise
+</span><span class="keyword">function</span> init_network_needed()
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="comment">---Callback executed to initialise host networking.
+</span><a id="227"></a><span class="comment">--@param pid int PID of container.
+</span><span class="keyword">function</span> init_network_host(pid)
+	debug_print(<span class="string">"init_network_host"</span>, <span class="string">'EXEC'</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<a id="233"></a><span class="comment">---Callback executed to initialise child networking.
+</span><span class="keyword">function</span> init_network_child()
+	debug_print(<span class="string">"init_network_child"</span>, <span class="string">'EXEC'</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> shell()
+	<span class="global">print</span>(<span class="string">"Launching shell."</span>)
+	exec(<span class="string">"sh"</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> need_build()
+	<span class="keyword">if</span> <span class="keyword">not</span> isFile(base_path .. <span class="string">".built"</span>) <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span>
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+debian = {}
+debian.mirror = <span class="string">"http://deb.debian.org/debian"</span>;
+debian.arch = exec(<span class="string">"uname -m"</span>, <span class="keyword">true</span>)
+debian.arch = <span class="global">string</span>.gsub(debian.arch, <span class="string">"\n"</span>, <span class="string">""</span>)
+<span class="keyword">if</span> debian.arch:find(<span class="string">"x86_64"</span>) <span class="keyword">then</span> debian.arch = <span class="string">"amd64"</span> <span class="keyword">end</span>
+<span class="keyword">if</span> debian.arch:find(<span class="string">"i686"</span>) <span class="keyword">then</span> debian.arch = <span class="string">"i386"</span> <span class="keyword">end</span>
+debian.cache_file = <span class="string">"/usr/local/container/debian."</span> .. debian.arch .. <span class="string">".tar.gz"</span>;
+
+<span class="keyword">function</span> build()
+	debug_print(<span class="string">"build"</span>, <span class="string">"EXEC"</span>)
+	<span class="keyword">if</span> <span class="keyword">not</span> isFile(debian.cache_file) <span class="keyword">then</span>
+		<span class="global">print</span>(<span class="string">"Building debian cache..."</span>)
+		mkdir(<span class="string">"../.debootstrap"</span>)
+		chdir(<span class="string">"../.debootstrap"</span>)
+		exec_or_die(<span class="string">"debootstrap  --include=iproute2,net-tools stable . "</span> .. debian.mirror)
+		<span class="keyword">if</span> isFile(<span class="string">"etc/debian_version"</span>) <span class="keyword">then</span>
+			<span class="global">print</span>(<span class="string">"Saving cache..."</span>)
+			exec_or_die(<span class="string">"tar --exclude='dev' --exclude='sys' --exclude='proc' -zcf ../.debian.cache *"</span>)
+			exec_or_die(<span class="string">"rm -f /var/cache/debian.cache &amp;&amp; mv ../.debian.cache "</span> .. debian.cache_file)
+		<span class="keyword">end</span>
+		chdir(<span class="string">"../.jail"</span>)
+		exec_or_die(<span class="string">"rm -rf ../.debootstrap"</span>)
+	<span class="keyword">end</span>
+	<span class="global">print</span>(<span class="string">"Installing debian from cache..."</span>)
+	exec(<span class="string">"tar -zxf "</span> .. debian.cache_file)
+	<span class="keyword">if</span> <span class="keyword">not</span> isFile(<span class="string">"etc/debian_version"</span>) <span class="keyword">then</span> die(<span class="string">"Error extracting debian image."</span>) <span class="keyword">end</span>
+	<span class="global">print</span>(<span class="string">"Updating..."</span>)
+	exec_or_die(<span class="string">"chroot . apt-get update; chroot . apt-get -y dist-upgrade"</span>)
+	<span class="global">print</span>(<span class="string">"Debian Installed."</span>)
+	old_exec = exec
+	exec = <span class="keyword">function</span> (cmd) <span class="keyword">return</span> old_exec(<span class="string">"chroot . sh -c '"</span> .. cmd .. <span class="string">"'"</span>) <span class="keyword">end</span>
+	<span class="keyword">local</span> ret = install_container()
+	exec = old_exec
+	write_file(<span class="string">"../.built"</span>, <span class="string">""</span>)
+	<span class="keyword">return</span> ret
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> pairsByKeys (t, f)
+	<span class="keyword">local</span> a = {}
+	<span class="keyword">for</span> n <span class="keyword">in</span> <span class="global">pairs</span>(t) <span class="keyword">do</span> <span class="global">table</span>.insert(a, n) <span class="keyword">end</span>
+	<span class="global">table</span>.sort(a, f)
+	<span class="keyword">local</span> i = <span class="number">0</span>	  <span class="comment">-- iterator variable
+</span>	<span class="keyword">local</span> iter = <span class="keyword">function</span> ()   <span class="comment">-- iterator function
+</span>		i = i + <span class="number">1</span>
+		<span class="keyword">if</span> a[i] == <span class="keyword">nil</span> <span class="keyword">then</span> <span class="keyword">return</span> <span class="keyword">nil</span>
+		<span class="keyword">else</span> <span class="keyword">return</span> a[i], t[a[i]]
+		<span class="keyword">end</span>
+	<span class="keyword">end</span>
+	<span class="keyword">return</span> iter
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> mount_container()
+	debug_print(<span class="string">'mount_container'</span>, <span class="string">'EXEC'</span>)
+
+	exec_or_die(<span class="string">"mkdir -p .jail &amp;&amp; mkdir -p .filesystem &amp;&amp; mount -n --make-rprivate --make-private -o rw --bind .filesystem .jail"</span>)
+	exec_or_die(<span class="string">"mkdir -p .jail/proc &amp;&amp; mount -t proc proc .jail/proc"</span>)
+	exec_or_die(<span class="string">"mkdir -p .jail/sys &amp;&amp; mount -t sysfs /sys .jail/sys"</span>)
+	exec_or_die(<span class="string">"mkdir -p .jail/dev &amp;&amp; mount -t devtmpfs udev .jail/dev"</span>)
+	exec_or_die(<span class="string">"mkdir -p .jail/dev/pts &amp;&amp; mount -t devpts devpts .jail/dev/pts"</span>)
+	<span class="keyword">for</span> target, mount <span class="keyword">in</span> pairsByKeys(filesystems) <span class="keyword">do</span>
+		debug_print(<span class="string">'mount_container'</span>, mount[<span class="string">'type'</span>] .. <span class="string">':'</span> .. target)
+		<span class="keyword">if</span> mount[<span class="string">'type'</span>] == <span class="string">"tmpfs"</span> <span class="keyword">then</span>
+			<span class="keyword">if</span> <span class="keyword">not</span> isDir(<span class="string">".jail/"</span> .. target) <span class="keyword">then</span>
+				exec(<span class="string">"mkdir -p .jail/"</span> .. target)
+			<span class="keyword">end</span>
+			mount_opts = <span class="string">"-n "</span>
+			<span class="keyword">if</span> mount[<span class="string">'size'</span>] <span class="keyword">then</span>
+				mount_opts = mount_opts .. <span class="string">"-o size="</span> .. mount[<span class="string">'size'</span>] .. <span class="string">" "</span>
+			<span class="keyword">end</span>
+			exec_or_die(<span class="string">"mount "</span> .. mount_opts .. <span class="string">"-t tmpfs tmp"</span> .. <span class="global">string</span>.sub(<span class="global">tostring</span>(mount),<span class="number">10</span>) .. <span class="string">" .jail/"</span> .. target)
+		<span class="keyword">elseif</span> mount[<span class="string">'type'</span>] == <span class="string">"map"</span> <span class="keyword">then</span>
+			<span class="keyword">if</span> <span class="keyword">not</span> mount[<span class="string">'source'</span>] <span class="keyword">then</span> die(<span class="string">"No source specified for "</span> .. target) <span class="keyword">end</span>
+			<span class="keyword">if</span> <span class="keyword">not</span> isDir(<span class="string">".jail/"</span> .. target) <span class="keyword">then</span>
+				exec(<span class="string">"mkdir -p .jail/"</span> .. target)
+			<span class="keyword">end</span>
+			exec(<span class="string">"mkdir -p "</span> .. mount[<span class="string">'source'</span>]);
+			exec_or_die(<span class="string">"mount -n --make-rprivate --make-private --bind "</span> .. mount[<span class="string">'source'</span>] .. <span class="string">" .jail/"</span> .. target)
+		<span class="keyword">end</span>
+	<span class="keyword">end</span>
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> unmount_container()
+	debug_print(<span class="string">'unmount_container'</span>, <span class="string">"EXEC"</span>)
+	exec(<span class="string">"umount -l -R "</span> .. base_path ..  <span class="string">"/.jail 2&gt;&amp;1"</span>, <span class="keyword">true</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> lock_container()
+	debug_print(<span class="string">'lock_container'</span>, <span class="string">"EXEC"</span>)
+
+	exec_or_die(<span class="string">"mount -n -o remount,ro --bind / /"</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> <span class="global">table</span>.clone(org)
+	<span class="keyword">local</span> new = {}
+	<span class="keyword">for</span> name, value <span class="keyword">in</span> <span class="global">pairs</span>(org) <span class="keyword">do</span>
+		new[name] = value
+	<span class="keyword">end</span>
+	<span class="keyword">return</span> new
+<span class="keyword">end</span>
+
+<span class="keyword">local</span> daemons={}
+
+<span class="keyword">function</span> start_daemons()
+	debug_print(<span class="string">'start_daemons'</span>, daemons)
+	<span class="keyword">for</span> _, daemon <span class="keyword">in</span> <span class="global">pairs</span>(daemons) <span class="keyword">do</span>
+		<span class="keyword">if</span> fork() == <span class="number">0</span> <span class="keyword">then</span>
+			debug_print(<span class="string">'start_daemons'</span>, daemon.mod)
+			<span class="keyword">local</span> ret = daemon.func();
+			debug_print(<span class="string">'start_daemons'</span>, daemon.mod .. <span class="string">' returned '</span> .. ret)
+			<span class="global">os</span>.exit(<span class="number">0</span>)
+		<span class="keyword">end</span>
+	<span class="keyword">end</span>
+	debug_print(<span class="string">'start_daemons'</span>, <span class="string">"Started."</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> prepend_functions(target, source, modulename)
+	debug_print(<span class="string">'prepend_functions'</span>, modulename)
+	<span class="keyword">for</span> name, sourcefunc <span class="keyword">in</span> <span class="global">pairs</span>(source) <span class="keyword">do</span>
+		<span class="keyword">if</span> (name == <span class="string">'background'</span> <span class="keyword">and</span> <span class="global">type</span>(target[name]) == <span class="string">"function"</span>) <span class="keyword">and</span> target[name] ~= source[name] <span class="keyword">then</span>
+			debug_print(<span class="string">'prepend_functions'</span>, modulename .. <span class="string">': Daemon.'</span>)
+			<span class="global">table</span>.insert(daemons, {mod=modulename, func=target[name]})
+			target[name]=source[name]
+		<span class="keyword">elseif</span> <span class="global">type</span>(source[name]) == <span class="string">"function"</span> <span class="keyword">and</span> <span class="global">type</span>(target[name]) == <span class="string">"function"</span> <span class="keyword">and</span> source[name] ~= target[name] <span class="keyword">then</span>
+			<span class="keyword">local</span> previousfunc = target[name]
+			target[name] = <span class="keyword">function</span> (...)
+				<span class="keyword">local</span> ret = sourcefunc(...)
+				<span class="keyword">if</span> ret ~= <span class="number">0</span> <span class="keyword">then</span> <span class="keyword">return</span> ret <span class="keyword">end</span>
+				debug_print(name, <span class="string">"Calling from "</span> .. modulename)
+				ret = previousfunc(...)
+				debug_print(name, <span class="string">"Module "</span> .. modulename .. <span class="string">" returned "</span> .. ret)
+				<span class="keyword">return</span> ret
+			<span class="keyword">end</span>
+			debug_print(<span class="string">'prepend_functions'</span>, modulename .. <span class="string">': '</span> .. name)
+		<span class="keyword">end</span>
+	<span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="comment">---Fix Global Functions.
+</span><span class="comment">--Internal function used to chain functions together.
+</span><span class="comment">--@param modulename string.
+</span><span class="keyword">local</span> DEFAULT_ENVIRONMENT = <span class="global">table</span>.clone(_ENV)
+<span class="keyword">function</span> FIX_ENVIRONMENT(modulename)
+	debug_print(<span class="string">'FIX_ENVIRONMENT'</span>, modulename)
+	<span class="keyword">if</span> <span class="keyword">not</span> modulename <span class="keyword">then</span> modulename = <span class="string">'container'</span> <span class="keyword">end</span>
+	prepend_functions(_ENV, DEFAULT_ENVIRONMENT, modulename)
+	DEFAULT_ENVIRONMENT = <span class="global">table</span>.clone(_ENV)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span></pre>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-03-17 07:43:26 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
